@@ -1,0 +1,29 @@
+{
+  "name": "movie-search-mevn",
+  "version": "1.0.0",
+  "description": "Progetto per il corso di base dati II utilizzando un database NoSQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AAndonio/Movie-Search-MEVN.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AAndonio/Movie-Search-MEVN/issues"
+  },
+  "homepage": "https://github.com/AAndonio/Movie-Search-MEVN#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.2.6",
+    "mongoose": "^5.5.12",
+    "nodemon": "^1.19.1"
+  }
+}

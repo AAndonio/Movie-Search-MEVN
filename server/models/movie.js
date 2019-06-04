@@ -32,6 +32,6 @@ var MovieSchema = new Schema({
     movie_imdb_link: String
 });
 
-var Movie = mongoose.model("Movie", MovieSchema);
+const Movie = mongoose.model("Movie", MovieSchema);
 
 module.exports = Movie;

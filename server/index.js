@@ -17,6 +17,7 @@ app.use('/', home);
 const moduloConnessione = require('./mongodbConnModule');
 var db = moduloConnessione.connect();
 
+
 /* definiamo una costante per la porta che, se disponibile, 
 piglia il valore dalla variabile d'ambiente PORT altrimenti 
 usa la porta 5000.

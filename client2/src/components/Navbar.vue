@@ -1,6 +1,6 @@
 <template>
   <!--Navbar-->
-  <mdb-navbar color="indigo" dark style="height: 100px">
+  <mdb-navbar color="indigo" dark style="height: 50px">
     <!-- Navbar brand -->
     <mdb-navbar-brand href="https://mdbootstrap.com/" style="margin-left: 100px">
       <img src="../assets/logo.png" style="width: 180px">

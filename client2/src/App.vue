@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Navbar/>
-    <ScaleRotate disableOutsideClick>
+    <ScaleRotate disableOutsideClick style="
+      position: fixed;
+      height: 30px;
+      top: -25px;
+      cursor: pointer;">
         <b-button v-b-toggle="'collapse-2'" class="m-1" style="width:-webkit-fill-available">Colore</b-button>
         <!-- Element to collapse -->
         <b-collapse id="collapse-2">

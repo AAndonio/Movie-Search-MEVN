@@ -1,24 +1,31 @@
 <template>
 <div>
   <Navbar/>
-  <Sidebar/>
+  <Menu/>
+  <scaleRotate/>
+  <Table/>
 </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
+import Table from './components/Table'
+import Menu from './components/Menu'
+import scaleRotate from './components/scaleRotate'
 
 export default {
   name: 'App',
   components: {
     Navbar,
-    Sidebar
+    Menu,
+    scaleRotate,
+    Table
   },
   data () {
     return {
       //
     }
   }
+  
 }
 </script>

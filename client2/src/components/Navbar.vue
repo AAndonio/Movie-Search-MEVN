@@ -28,8 +28,28 @@
 </template>
 
 <script>
+import 'mdbvue/build/css/mdb.css';
+import {mdbNavbar, mdbNavbarBrand, 
+        mdbNavbarToggler, mdbNavbarNav, 
+        mdbDropdown,mdbDropdownToggle, 
+        mdbDropdownMenu, mdbDropdownItem, 
+        mdbNavItem, mdbFormInline, mdbInput} from 'mdbvue';
+
 export default {
   name: "Navbar",
+  components: {
+    mdbNavbar,
+    mdbNavbarBrand,
+    mdbNavbarToggler,
+    mdbNavbarNav,
+    mdbDropdown,
+    mdbDropdownToggle,
+    mdbDropdownMenu,
+    mdbDropdownItem,
+    mdbNavItem,
+    mdbFormInline, 
+    mdbInput
+  },
   props: {
     msg: String
   }

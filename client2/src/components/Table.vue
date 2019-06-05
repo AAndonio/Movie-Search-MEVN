@@ -79,11 +79,7 @@ export default {
   data() {
     return {
       items: [
-        {
-          isActive: true,
-          age: 40,
-          name: { first: "Dickerson", last: "Macdonald" }
-        },
+        { isActive: true,age: 40,name: { first: "Dickerson", last: "Macdonald" } },
         { isActive: false, age: 21, name: { first: "Larsen", last: "Shaw" } },
         { isActive: false, age: 9, name: { first: "Mini", last: "Navarro" } },
         { isActive: false, age: 89, name: { first: "Geneva", last: "Wilson" } },
@@ -92,11 +88,7 @@ export default {
         { isActive: true, age: 40, name: { first: "Thor", last: "Macdonald" } },
         { isActive: true, age: 87, name: { first: "Larsen", last: "Shaw" } },
         { isActive: false, age: 26, name: { first: "Mitzi", last: "Navarro" } },
-        {
-          isActive: false,
-          age: 22,
-          name: { first: "Genevieve", last: "Wilson" }
-        },
+        { isActive: false, age: 22, name: { first: "Genevieve", last: "Wilson" } },
         { isActive: true, age: 38, name: { first: "John", last: "Carney" } },
         { isActive: false, age: 29, name: { first: "Dick", last: "Dunlap" } }
       ],
@@ -107,7 +99,7 @@ export default {
       ],
       totalRows: 1,
       currentPage: 1,
-      perPage: 5,
+      perPage: 12,
       pageOptions: [5, 50, 100],
       filter: null,
       infoModal: {

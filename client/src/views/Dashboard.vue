@@ -1,38 +1,18 @@
 <template>
   <div class="animated fadeIn">
     <b-row>
-      <b-table class="mb-0 table-outline" responsive="sm" hover :items="tableItems" :fields="tableFields" head-variant="light">
-        <div slot="avatar" class="avatar" slot-scope="item">
-          <img :src="item.value.url" class="img-avatar" alt="">
-          <span class="avatar-status" v-bind:class="{ 'bg-success': item.value.status == 'success',  'bg-warning': item.value.status == 'warning', 'bg-danger': item.value.status == 'danger', 'bg-secondary': item.value.status == '' }"></span>
-        </div>
-        <div slot="user" slot-scope="item">
-          <div>{{item.value.name}}</div>
-          <div class="small text-muted">
-            <span>
-              <template v-if="item.value.new">New</template>
-              <template v-else>Recurring</template>
-            </span> | Registered: {{item.value.registered}}
+      <div style="width: 100%">
+        <b-table id="tabella" striped class="mb-0 table-outline" responsive="sm" hover :items="tableItems" :fields="tableFields" head-variant="light">
+          <div slot="activity" slot-scope="item">
+            <div class="small text-muted">Last login</div>
+            <strong>{{item.value}}</strong>
           </div>
-        </div>
-        <i slot="country" class="h4 mb-0" :class="flag(item.value.flag)" slot-scope="item" :title="item.value.flag" :id="item.value.flag"></i>
-        <i class="flag-icon flag-icon-pw h1" title="pw" id="pw"></i>
-        <div slot="usage" slot-scope="item">
-          <div class="clearfix">
-            <div class="float-left">
-              <strong>{{item.value.value}}%</strong>
-            </div>
-            <div class="float-right">
-              <small class="text-muted">{{item.value.period}}</small>
-            </div>
-          </div>
-          <b-progress height={} class="progress-xs" v-model="item.value.value" :variant="variant(item.value.value)"></b-progress>
-        </div>
-        <div slot="activity" slot-scope="item">
-          <div class="small text-muted">Last login</div>
-          <strong>{{item.value}}</strong>
-        </div>
-      </b-table>
+        </b-table>
+        <b-col cols=auto style="margin: 0 auto; padding: 2% 0 0 0">
+          <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10" aria-controls="tabella">
+          </b-pagination>
+        </b-col>
+      </div>
     </b-row>
   </div>
 </template>
@@ -107,16 +87,11 @@ export default {
         }
       ],
       tableFields: {
-        avatar: {
-          label: '<i class="icon-people"></i>',
-          class: 'text-center'
-        },
         user: {
           label: 'Titolo'
         },
         country: {
           label: 'Nazione',
-          class: 'text-center'
         },
         usage: {
           label: 'Anno'
@@ -127,24 +102,6 @@ export default {
       }
     }
   },
-  methods: {
-    variant (value) {
-      let $variant
-      if (value <= 25) {
-        $variant = 'info'
-      } else if (value > 25 && value <= 50) {
-        $variant = 'success'
-      } else if (value > 50 && value <= 75) {
-        $variant = 'warning'
-      } else if (value > 75 && value <= 100) {
-        $variant = 'danger'
-      }
-      return $variant
-    },
-    flag (value) {
-      return 'flag-icon flag-icon-' + value
-    }
-  }
 }
 </script>
 

@@ -1,9 +1,9 @@
 <template>
   <!--Navbar-->
-  <mdb-navbar color="indigo" dark>
+  <mdb-navbar color="indigo" dark style="height: 100px">
     <!-- Navbar brand -->
-    <mdb-navbar-brand href="https://mdbootstrap.com/">
-      <img src="../assets/logo.png" style="width: 180px; margin-right: 5px">
+    <mdb-navbar-brand href="https://mdbootstrap.com/" style="margin-left: 100px">
+      <img src="../assets/logo.png" style="width: 180px">
     </mdb-navbar-brand>
     <mdb-navbar-toggler>
       <mdb-navbar-nav>
@@ -19,21 +19,23 @@
         <mdb-nav-item href="#">Cast</mdb-nav-item>
         <mdb-nav-item href="#">Budget</mdb-nav-item>
       </mdb-navbar-nav>
-      <!-- Search form -->
-      <mdb-form-inline>
-        <mdb-input type="text" placeholder="Search" aria-label="Search"/>
-      </mdb-form-inline>
     </mdb-navbar-toggler>
   </mdb-navbar>
 </template>
 
 <script>
-import 'mdbvue/build/css/mdb.css';
-import {mdbNavbar, mdbNavbarBrand, 
-        mdbNavbarToggler, mdbNavbarNav, 
-        mdbDropdown,mdbDropdownToggle, 
-        mdbDropdownMenu, mdbDropdownItem, 
-        mdbNavItem, mdbFormInline, mdbInput} from 'mdbvue';
+import "mdbvue/build/css/mdb.css";
+import {
+  mdbNavbar,
+  mdbNavbarBrand,
+  mdbNavbarToggler,
+  mdbNavbarNav,
+  mdbDropdown,
+  mdbDropdownToggle,
+  mdbDropdownMenu,
+  mdbDropdownItem,
+  mdbNavItem
+} from "mdbvue";
 
 export default {
   name: "Navbar",
@@ -46,9 +48,7 @@ export default {
     mdbDropdownToggle,
     mdbDropdownMenu,
     mdbDropdownItem,
-    mdbNavItem,
-    mdbFormInline, 
-    mdbInput
+    mdbNavItem
   },
   props: {
     msg: String

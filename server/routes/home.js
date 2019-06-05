@@ -44,23 +44,11 @@ router.post('/', async (req,res) => {
         query.where('genres').all(req.body.genres);
     
     if(req.body.actors){
-        console.log(req.body.actors.length);
-        switch(req.body.actors.length){ 
-        case 1:
-            query.and(
-                {'actor_1_name': {$in: req.body.actors}},
-                {'actor_2_name': {$in: req.body.actors}},
-                {'actor_3_name': {$in: req.body.actors}}
-            );
-            break;
-        /*case 2:
-            query.where('actor_1_name').in(req.body.actors);
-            break;
-        case 3:
-            query.where('actor_1_name').in(req.body.actors);
-            break;*/
-        }
-    }  
+        if(req.body.actors==1)
+            query.where('actors').in(req.body.actors);
+        else
+            query.where('actors').all(req.body.actors);
+    }
     
     if(req.body.director_name)
         query.where('director_name').equals(req.body.director_name);

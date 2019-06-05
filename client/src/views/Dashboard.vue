@@ -87,6 +87,7 @@ export default {
         }
       ],
       tableFields: {
+<<<<<<< HEAD
         user: {
           label: 'Titolo'
         },
@@ -96,6 +97,8 @@ export default {
         usage: {
           label: 'Anno'
         },
+=======
+>>>>>>> f7fa42485ef4e3d41c2ecdd688dc5ed21a6f4126
         activity: {
           label: 'Link'
         }

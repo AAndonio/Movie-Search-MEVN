@@ -29,10 +29,10 @@ router.post('/', async (req,res) => {
     query.where('color').equals(req.body.color);
 
     if(req.body.min_year)
-    query.where('color').equals(req.body.color);
+    query.where('title_year').gt(req.body.min_year)
 
-    if(req.body.min_year)
-    query.where('title_year').gt(req.body.min_year).lt(req.body.max_year);
+    if(req.body.max_year)
+    query.where('title_year').lt(req.body.max_year);
 
     if(req.body.min_duration)
     query.where('duration').gt(req.body.min_duration).lt(req.body.max_duration);

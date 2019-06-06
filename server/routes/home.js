@@ -26,7 +26,7 @@ router.post('/', async (req,res) => {
     var query = Movie.find({});
 
     if(req.body.color)
-        query.where('color').equals(req.body.color);
+        query.where('color').in(req.body.color);
 
     if(req.body.min_year)
         query.where('title_year').gt(req.body.min_year).lt(req.body.max_year);

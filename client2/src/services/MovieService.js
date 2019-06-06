@@ -6,7 +6,7 @@ export default {
         return Api().get('/title='+title);
     },
 
-    getMoviesSelection(params){
-        return Api().post(params);
+    getMoviesSelection(request){
+        return Api().post('/', request);
     }
 }

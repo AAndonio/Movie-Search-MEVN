@@ -62,7 +62,9 @@ router.post('/', async (req,res) => {
     if(req.body.min_critic)
         query.where('num_critic_for_reviews').gt(req.body.min_critic).lt(req.body.max_critic);
     
-    query.exec((err, movies) => {
+
+
+    query.select('movie_title title_year').exec((err, movies) => {
         if(err){
             res.status(500).send(err);
         }

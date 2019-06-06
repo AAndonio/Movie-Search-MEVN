@@ -1,17 +1,15 @@
 <template>
-  <div id="home">
-    <Navbar/>
-    <router-view/>
-  </div>
+    <Table/>
 </template>
 
 <script>
-import Navbar from "./components/Navbar";
+import Table from "./Table";
+
 
 export default {
-  name: "App",
+  name: "Home",
   components: {
-    Navbar
+    Table
   },
   data() {
     return {

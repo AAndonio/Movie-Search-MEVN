@@ -9,9 +9,11 @@ app.use(cors());
 
 //const con percorsi delle routes
 const home = require('./routes/home');
+const topTen = require('./routes/topTen/topTen');
 
 //definiamo le routes
 app.use('/', home);
+app.use('/topten', topTen);
 
 //connessione al db
 const moduloConnessione = require('./mongodbConnModule');

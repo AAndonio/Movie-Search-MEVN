@@ -22,7 +22,8 @@
     "tar": "^4.4.10",
     "vue": "^2.6.10",
     "vue-bootstrap-slider": "^2.1.8",
-    "vue-burger-menu": "^2.0.1"
+    "vue-burger-menu": "^2.0.1",
+    "vuetify": "^1.5.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
@@ -34,7 +35,8 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue-cli-plugin-vuetify": "^0.5.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.0.5"
   },
   "eslintConfig": {
     "root": true,

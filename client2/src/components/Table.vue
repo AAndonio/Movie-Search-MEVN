@@ -35,6 +35,9 @@
           striped
           show-empty
           stacked="md"
+          striped
+          hover
+          head-variant="dark"
           :items="items"
           :fields="fields"
           :current-page="currentPage"
@@ -74,13 +77,15 @@
 
 import MovieService from '../services/MovieService';
 import { ScaleRotate } from "vue-burger-menu";
-import Toggle from './Toggle';
+import Toggle from "./Toggle";
+import Slider from "./Slider"
 
 export default {
   name: "Home",
   components: {
     ScaleRotate,
-    Toggle
+    Toggle,
+    Slider
   },
   props:{
      colorLabel: {
@@ -96,7 +101,7 @@ export default {
     return {
       items: [],
       fields: [
-        { key: "movie_title", label: "Titolo" },
+        { key: "movie_title", label: "Titolo"},
         { key: "title_year", label: "Anno" }
       ],
       totalRows: 1,

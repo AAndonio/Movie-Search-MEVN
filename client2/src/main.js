@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import './plugins/vuetify'
 import App from './App.vue'
 import router from './router/router'
 
@@ -9,11 +10,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbvue/build/css/mdb.css';
 
-import bFormSlider from 'vue-bootstrap-slider';
-import 'bootstrap-slider/dist/css/bootstrap-slider.css';
+import Vuetify from 'vuetify'
 
-Vue.use(bFormSlider)
-
+Vue.use(Vuetify)
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false

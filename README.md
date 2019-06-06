@@ -8,7 +8,7 @@
 
 **Movie-Search-MEVN** is a single page application that allows you to interact with a movie dataset.
 
-This is our course project made for the Databases II course at University of Salerno.
+This is our course project made for the Databases II class at University of Salerno.
 The project aims to learn how to interact with a NoSQL database, and we have used MongoDB in our case.
 Movie-Search-MEVN is built on the MEVN stack as the name says.
 

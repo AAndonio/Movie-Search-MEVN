@@ -10,7 +10,7 @@
         <!-- Element to collapse -->
         <b-collapse id="collapse-2">
           <b-card-text>
-            <Toggle/>
+            <Toggle :labelToggle="colorLabel"/>
           </b-card-text>
         </b-collapse>
       </ScaleRotate>
@@ -77,11 +77,16 @@
 
 import MovieService from '../services/MovieService';
 import { ScaleRotate } from "vue-burger-menu";
+import Toggle from './Toggle';
 
 export default {
   name: "Home",
   components: {
-    ScaleRotate
+    ScaleRotate,
+    Toggle
+  },
+  props:{
+     colorLabel: [{ text: 'A Colore', value: 'colore'},{ text: 'In Bianco e Nero', value: 'blackNwhite'}]
   },
   data() {
     return {
@@ -104,6 +109,7 @@ export default {
   },
   mounted() {
     // Set the initial number of items
+
     this.getMovies()
 
   },

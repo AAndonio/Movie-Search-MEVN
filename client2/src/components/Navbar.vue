@@ -7,7 +7,7 @@
     </mdb-navbar-brand>
     <mdb-navbar-toggler>
       <mdb-navbar-nav>
-        <mdb-nav-item href="#" active>Home</mdb-nav-item>
+        <mdb-nav-item href="/" active>Home</mdb-nav-item>
         <!-- Dropdown -->
         <mdb-dropdown tag="li" class="nav-item">
           <mdb-dropdown-toggle tag="a" navLink color="indigo" slot="toggle" waves-fixed>Top 10 Film</mdb-dropdown-toggle>

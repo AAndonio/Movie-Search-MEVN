@@ -3,7 +3,7 @@
     <!-- User Interface controls -->
     <div id="app">
       <ScaleRotate disableOutsideClick style="
-      position: fixed;
+      position: absolute;
       height: 30px;
       cursor: pointer;">
         <b-button v-b-toggle="'collapse-1'" class="m-1" style="width:-webkit-fill-available">Colore</b-button>
@@ -18,6 +18,13 @@
         <b-collapse id="collapse-2">
           <b-card-text>
             <Toggle/>
+          </b-card-text>
+        </b-collapse>
+                <b-button v-b-toggle="'collapse-3'" class="m-1" style="width:-webkit-fill-available">Colore</b-button>
+        <!-- Element to collapse -->
+        <b-collapse id="collapse-3">
+          <b-card-text>
+            <Slider/>
           </b-card-text>
         </b-collapse>
       </ScaleRotate>
@@ -45,6 +52,9 @@
         <b-table
           show-empty
           stacked="md"
+          striped
+          hover
+          head-variant="dark"
           :items="items"
           :fields="fields"
           :current-page="currentPage"
@@ -85,18 +95,20 @@
 import MovieService from '../services/MovieService';
 import { ScaleRotate } from "vue-burger-menu";
 import Toggle from "./Toggle";
+import Slider from "./Slider"
 
 export default {
   name: "Home",
   components: {
     ScaleRotate,
     Toggle,
+    Slider
   },
   data() {
     return {
       items: [],
       fields: [
-        { key: "movie_title", label: "Titolo" },
+        { key: "movie_title", label: "Titolo"},
         { key: "title_year", label: "Anno" }
       ],
       totalRows: 1,
@@ -121,6 +133,7 @@ export default {
     async getMovies() {
       const response = await MovieService.getMoviesSelection();
       this.items = response.data;
+      this.totalRows = this.items.length;
     },
 
 

@@ -1,12 +1,19 @@
 <template>
-  <b-container fluid>
+  <b-container fluid style="padding: 0 0">
     <!-- User Interface controls -->
     <div id="app">
       <ScaleRotate disableOutsideClick style="
       position: fixed;
       height: 30px;
       cursor: pointer;">
-        <b-button v-b-toggle="'collapse-2'" class="m-1" style="width:-webkit-fill-available">Colore</b-button>
+        <b-button v-b-toggle="'collapse-1'" class="m-1" style="width:-webkit-fill-available">Colore</b-button>
+        <!-- Element to collapse -->
+        <b-collapse id="collapse-1">
+          <b-card-text>
+            <Toggle/>
+          </b-card-text>
+        </b-collapse>
+        <b-button v-b-toggle="'collapse-2'" class="m-1" style="width:-webkit-fill-available">Cuntent Rating</b-button>
         <!-- Element to collapse -->
         <b-collapse id="collapse-2">
           <b-card-text>
@@ -15,9 +22,9 @@
         </b-collapse>
       </ScaleRotate>
       <main id="page-wrap">
-        <b-row align-h="end">
-          <b-col md="3" class="my-1">
-            <b-form-group label-cols-sm="3" label="Filtra per nome" class="mb-0">
+        <b-row align-h="end" style="padding: 40px 65px 0px">
+          <b-col md="3" class="my-1" style="margin: auto; padding-top: 30px">
+            <b-form-group label-cols-sm="3" label="Filtra" class="mb-0">
               <b-input-group>
                 <b-form-input v-model="filter" placeholder="Type to Search"></b-form-input>
                 <b-input-group-append>
@@ -27,8 +34,8 @@
             </b-form-group>
           </b-col>
 
-          <b-col md="3"  class="my-1">
-            <b-form-group label-cols-sm="3" label="Per page" class="mb-0">
+          <b-col md="3"  class="my-1" style="margin: auto; padding-top: 30px">
+            <b-form-group label-cols-sm="3" label="Film per pagina" class="mb-0">
               <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
             </b-form-group>
           </b-col>

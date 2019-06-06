@@ -9,6 +9,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbvue/build/css/mdb.css';
 
+import bFormSlider from 'vue-bootstrap-slider';
+import 'bootstrap-slider/dist/css/bootstrap-slider.css';
+
+Vue.use(bFormSlider)
+
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false

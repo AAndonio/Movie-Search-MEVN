@@ -6,9 +6,11 @@
       position: absolute;
       height: 30px;
       cursor: pointer;">
-        <Toggle name="Colore" id="toggle1" :idVarToggle="'toggle1'" :labelToggle="colorLabel"/>
-        <Toggle name="Content Rating" id="toggle2" :idVarToggle="'toggle2'" :labelToggle="contentRatingLabel"/>
-        
+        <b-button v-b-toggle="'toggle1'" class="m-1">Colore</b-button>
+        <Toggle name="Colore" id="toggle1" :labelToggle="colorLabel" />
+        <b-button v-b-toggle="'toggle2'" class="m-1">Content Rating</b-button>
+        <Toggle name="Content Rating" id="toggle2" :labelToggle="contentRatingLabel" />
+        <Slider/>
       </ScaleRotate>
       <main id="page-wrap">
         <b-row align-h="end" style="padding: 40px 65px 0px">
@@ -35,7 +37,6 @@
           striped
           show-empty
           stacked="md"
-          striped
           hover
           head-variant="dark"
           :items="items"
@@ -90,11 +91,11 @@ export default {
   props:{
      colorLabel: {
        type: Array,
-       default: [{ text: 'A Colore', value: 'colore'},{ text: 'In Bianco e Nero', value: 'blackNwhite'}]
+       default: () => [{ text: 'A Colore', value: 'colore'},{ text: 'In Bianco e Nero', value: 'blackNwhite'}]
       },
        contentRatingLabel: {
        type: Array,
-       default: [{ text: 'PG-13', value: 'PG13'},{ text: 'Unrated', value: 'unrated'}]
+       default: () => [{ text: 'PG-13', value: 'PG13'},{ text: 'Unrated', value: 'unrated'}]
       }
   },
   data() {

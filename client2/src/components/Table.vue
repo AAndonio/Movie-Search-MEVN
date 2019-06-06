@@ -3,23 +3,12 @@
     <!-- User Interface controls -->
     <div id="app">
       <ScaleRotate disableOutsideClick style="
-      position: fixed;
+      position: absolute;
       height: 30px;
       cursor: pointer;">
-        <b-button v-b-toggle="'collapse-1'" class="m-1" style="width:-webkit-fill-available">Colore</b-button>
-        <!-- Element to collapse -->
-        <b-collapse id="collapse-1">
-          <b-card-text>
-            <Toggle/>
-          </b-card-text>
-        </b-collapse>
-        <b-button v-b-toggle="'collapse-2'" class="m-1" style="width:-webkit-fill-available">Cuntent Rating</b-button>
-        <!-- Element to collapse -->
-        <b-collapse id="collapse-2">
-          <b-card-text>
-            <Toggle :labelToggle="colorLabel"/>
-          </b-card-text>
-        </b-collapse>
+        <Toggle name="Colore" id="toggle1" :idVarToggle="'toggle1'" :labelToggle="colorLabel"/>
+        <Toggle name="Content Rating" id="toggle2" :idVarToggle="'toggle2'" :labelToggle="contentRatingLabel"/>
+        
       </ScaleRotate>
       <main id="page-wrap">
         <b-row align-h="end" style="padding: 40px 65px 0px">
@@ -43,6 +32,7 @@
         <b-container fluid style="padding: 50px">
         <!-- Main table element -->
         <b-table
+          striped
           show-empty
           stacked="md"
           :items="items"
@@ -52,7 +42,7 @@
           :filter="filter"
           @filtered="onFiltered"
         >
-          <template slot="movie_title" slot-scope="row">{{ row.value }}</template>
+          <template slot="movie_title" slot-scope="row" href="movie_imdb_link">{{ row.value }}</template>
           <template slot="title_year" slot-scope="row">{{ row.value }}</template>
 
           <template slot="row-details" slot-scope="row">
@@ -93,7 +83,14 @@ export default {
     Toggle
   },
   props:{
-     colorLabel: [{ text: 'A Colore', value: 'colore'},{ text: 'In Bianco e Nero', value: 'blackNwhite'}]
+     colorLabel: {
+       type: Array,
+       default: [{ text: 'A Colore', value: 'colore'},{ text: 'In Bianco e Nero', value: 'blackNwhite'}]
+      },
+       contentRatingLabel: {
+       type: Array,
+       default: [{ text: 'PG-13', value: 'PG13'},{ text: 'Unrated', value: 'unrated'}]
+      }
   },
   data() {
     return {
@@ -116,15 +113,14 @@ export default {
   },
   mounted() {
     // Set the initial number of items
-
-    this.getMovies()
-
+    this.getMovies();
   },
   methods: {
 
     async getMovies() {
       const response = await MovieService.getMoviesSelection();
       this.items = response.data;
+      this.totalRows = this.items.length;
     },
 
 

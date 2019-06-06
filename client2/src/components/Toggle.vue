@@ -17,7 +17,7 @@
       return {
         selected: [], // Must be an array reference!
         options: [
-          { text: 'A Colore', value: 'colore' },
+          { text: 'A Colore', value: 'colore'},
           { text: 'Bianco e Nero', value: 'blackNwhite' },
         ]
       }

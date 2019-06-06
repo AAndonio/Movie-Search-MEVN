@@ -1,13 +1,15 @@
 <template>
   <!--Navbar-->
-  <mdb-navbar color="indigo" dark style="height: 50px">
+  <mdb-navbar color="indigo" dark style="height: 80px">
     <!-- Navbar brand -->
-    <mdb-navbar-brand href="https://mdbootstrap.com/" style="margin-left: 100px">
-      <img src="../assets/logo.png" style="width: 180px">
+    <mdb-navbar-brand href="/">
+      <a href="/">
+        <img src="../assets/logo.png" style="width: 180px">
+      </a>
     </mdb-navbar-brand>
     <mdb-navbar-toggler>
       <mdb-navbar-nav>
-        <mdb-nav-item href="#" active>Home</mdb-nav-item>
+        <mdb-nav-item href="/" active>Home</mdb-nav-item>
         <!-- Dropdown -->
         <mdb-dropdown tag="li" class="nav-item">
           <mdb-dropdown-toggle tag="a" navLink color="indigo" slot="toggle" waves-fixed>Top 10 Film</mdb-dropdown-toggle>

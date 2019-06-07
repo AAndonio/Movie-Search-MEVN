@@ -5,13 +5,13 @@
         <v-list-group>
           <template v-slot:activator>
             <v-list-tile>
-              <v-list-tile-title>Colori</v-list-tile-title>
+              <v-list-tile-title style="color: darkred; font-weight: bold">Colori</v-list-tile-title>
             </v-list-tile>
           </template>
           <div style="padding:0 20px; font-size: 1.3em">
             <Toggle
               name="Colore"
-              style="color: #ADB5BD"
+              style="color: #ADB5BD; font-weight: 400;"
               :labelToggle="colorLabel"
               dbFieldName="color"
               v-on:childToParent="onToggleUpdating"
@@ -21,50 +21,66 @@
         <v-list-group>
           <template v-slot:activator>
             <v-list-tile>
-              <v-list-tile-title>Content Rating</v-list-tile-title>
+              <v-list-tile-title style="color: darkred; font-weight: bold">Content Rating</v-list-tile-title>
             </v-list-tile>
           </template>
           <div style="padding:0 20px; font-size: 1.3em">
-                <Toggle
-                  name="Content Rating"
-                  id="toggle2"
-                  style="color: #ADB5BD"
-                  :labelToggle="contentLabel"
-                  dbFieldName="content_rating"
-                  v-on:childToParent="onToggleUpdating"
-                />
+            <Toggle
+              name="Content Rating"
+              id="toggle2"
+              style="color: #ADB5BD; font-weight: 400;"
+              :labelToggle="contentLabel"
+              dbFieldName="content_rating"
+              v-on:childToParent="onToggleUpdating"
+            />
           </div>
         </v-list-group>
-          <v-list-group>
+        <v-list-group>
           <template v-slot:activator>
             <v-list-tile>
-              <v-list-tile-title>Generi</v-list-tile-title>
+              <v-list-tile-title style="color: darkred; font-weight: bold">Generi</v-list-tile-title>
             </v-list-tile>
           </template>
           <div style="padding:0 20px; font-size: 1.3em">
             <Toggle
               name="Genres"
               id="toggle3"
-              style="color: #ADB5BD"
+              style="color: #ADB5BD; font-weight: 400;"
               :labelToggle="genresLabel"
               dbFieldName="genres"
               v-on:childToParent="onToggleUpdating"
             />
           </div>
-          </v-list-group>
+        </v-list-group>
+        <v-list-group>
+          <template v-slot:activator>
+            <v-list-tile>
+              <v-list-tile-title style="color: darkred; font-weight: bold">Budget</v-list-tile-title>
+            </v-list-tile>
+          </template>
+          <div>
+            <Slider
+              name="Budget"
+              id="slider1"
+            />
+          </div>
+        </v-list-group>
       </v-navigation-drawer>
     </v-layout>
 
     <b-row align-h="end" style="padding: 40px 65px 0px 65px">
       <b-col md="3" class="my-1" style="padding-top: 30px">
         <button align-h="end" @click.stop="drawer = !drawer">
-          <img style=" background-color: Transparent;
+          <img
+            style=" background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
     overflow: hidden;
     outline:none;width: 50px;
-        height: 50px;" src="../assets/filter.png">
+        height: 50px;"
+            src="../assets/filter.png"
+          >
         </button>
       </b-col>
       <b-col md="3" class="my-1" style="padding-top: 30px">
@@ -72,7 +88,7 @@
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Clicca per cercare"></b-form-input>
             <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+              <b-button :disabled="!filter" @click="filter = ''" style="margin: 0">Clear</b-button>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>

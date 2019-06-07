@@ -9,17 +9,17 @@
     </mdb-navbar-brand>
     <mdb-navbar-toggler>
       <mdb-navbar-nav>
-        <mdb-nav-item href="/" active>Home</mdb-nav-item>
+        <mdb-nav-item href="/" active style="font-weight: bold">Home</mdb-nav-item>
         <!-- Dropdown -->
         <mdb-dropdown tag="li" class="nav-item">
-          <mdb-dropdown-toggle tag="a" navLink slot="toggle" waves-fixed>Top 10 Film</mdb-dropdown-toggle>
+          <mdb-dropdown-toggle tag="a" navLink slot="toggle" waves-fixed style="font-weight: bold">Top 10 Film</mdb-dropdown-toggle>
           <mdb-dropdown-menu>
-            <mdb-dropdown-item>Per Like</mdb-dropdown-item>
-            <mdb-dropdown-item>Per Voto</mdb-dropdown-item>
+            <mdb-dropdown-item style="font-weight: bold">Per Like</mdb-dropdown-item>
+            <mdb-dropdown-item style="font-weight: bold">Per Voto</mdb-dropdown-item>
           </mdb-dropdown-menu>
         </mdb-dropdown>
-        <mdb-nav-item href="#">Cast</mdb-nav-item>
-        <mdb-nav-item href="#">Budget</mdb-nav-item>
+        <mdb-nav-item href="#" style="font-weight: bold">Cast</mdb-nav-item>
+        <mdb-nav-item href="#" style="font-weight: bold">Budget</mdb-nav-item>
       </mdb-navbar-nav>
     </mdb-navbar-toggler>
   </mdb-navbar>
@@ -60,6 +60,6 @@ export default {
 
 <style>
 .navbar {
-background-color: #FFD700 !important;
+  background-color: #ffd700 !important;
 }
 </style>

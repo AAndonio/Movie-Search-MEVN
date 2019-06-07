@@ -3,6 +3,19 @@ const Movie = require('../models/movie');
 
 const router = express.Router();
 
+router.get('/distincGenres', async (req,res) => {
+    await Movie.distinct('genres').exec((err,genres) => {
+        if(err){
+            res.status(500).send(err);
+        }
+        if(genres) {
+            res.status(200).send(genres);
+            if(genres === [])
+                res.status(200).send("Nessun film soddisfa i requisiti");
+        }
+    });
+});
+
 
 
 router.get('/title=:movie_title', async (req, res) => {

@@ -1,7 +1,7 @@
 <template>
     <b-collapse id="collapse-3">
       <b-card-text>
-        <v-app style="background: #3f3f41" id="inspire">
+        <v-app id="inspire">
           <v-card flat color="transparent">
             <v-card-text>
               <v-layout row>

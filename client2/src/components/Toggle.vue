@@ -1,12 +1,10 @@
 <template>
   <div>
-      <b-collapse :id="id">
         <b-card-text>
           <b-form-group>
             <b-form-checkbox-group v-model="selected" :options="options" switches stacked v-on:input="aggiorna" ></b-form-checkbox-group>
           </b-form-group>
         </b-card-text>
-      </b-collapse>
   </div>
 </template>
 

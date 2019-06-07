@@ -1,115 +1,144 @@
 <template>
   <b-container fluid style="padding: 0 0;">
-    <div id="app">
-      <ScaleRotate
-        disableOutsideClick
-        style="
-      position: absolute;
-      height: 30px;
-      cursor: pointer;"
+    <v-layout wrap>
+      <v-navigation-drawer v-model="drawer" absolute temporary>
+        <v-list-group>
+          <template v-slot:activator>
+            <v-list-tile>
+              <v-list-tile-title>Colori</v-list-tile-title>
+            </v-list-tile>
+          </template>
+          <div style="padding:0 20px; font-size: 1.3em">
+            <Toggle
+              name="Colore"
+              style="color: #ADB5BD"
+              :labelToggle="colorLabel"
+              dbFieldName="color"
+              v-on:childToParent="onToggleUpdating"
+            />
+          </div>
+        </v-list-group>
+        <v-list-group>
+          <template v-slot:activator>
+            <v-list-tile>
+              <v-list-tile-title>Content Rating</v-list-tile-title>
+            </v-list-tile>
+          </template>
+          <div style="padding:0 20px; font-size: 1.3em">
+                <Toggle
+                  name="Content Rating"
+                  id="toggle2"
+                  style="color: #ADB5BD"
+                  :labelToggle="contentLabel"
+                  dbFieldName="content_rating"
+                  v-on:childToParent="onToggleUpdating"
+                />
+          </div>
+        </v-list-group>
+          <v-list-group>
+          <template v-slot:activator>
+            <v-list-tile>
+              <v-list-tile-title>Generi</v-list-tile-title>
+            </v-list-tile>
+          </template>
+          <div style="padding:0 20px; font-size: 1.3em">
+            <Toggle
+              name="Genres"
+              id="toggle3"
+              style="color: #ADB5BD"
+              :labelToggle="genresLabel"
+              dbFieldName="genres"
+              v-on:childToParent="onToggleUpdating"
+            />
+          </div>
+          </v-list-group>
+      </v-navigation-drawer>
+    </v-layout>
+
+    <b-row align-h="end" style="padding: 40px 65px 0px 65px">
+      <b-col md="3" class="my-1" style="padding-top: 30px">
+        <button align-h="end" @click.stop="drawer = !drawer">
+          <img style=" background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;width: 50px;
+        height: 50px;" src="../assets/filter.png">
+        </button>
+      </b-col>
+      <b-col md="3" class="my-1" style="padding-top: 30px">
+        <b-form-group label-cols-sm="3" label="Filtra" class="mb-0">
+          <b-input-group>
+            <b-form-input v-model="filter" placeholder="Clicca per cercare"></b-form-input>
+            <b-input-group-append>
+              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+      <b-col md="3" class="my-1" style="padding-top: 30px">
+        <b-form-group label-cols-sm="3" label="Film per pagina" class="mb-0">
+          <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
+        </b-form-group>
+      </b-col>
+      <b-col md="3" class="my-1" style="padding-top: 30px">
+        <b-form-group label-cols-sm="3" label="Ordina" class="mb-0">
+          <b-input-group>
+            <b-form-select v-model="sortBy" :options="sortOptions">
+              <option slot="first" :value="null">-- none --</option>
+            </b-form-select>
+            <b-form-select v-model="sortDesc" :disabled="!sortBy" slot="append">
+              <option :value="false">Asc</option>
+              <option :value="true">Desc</option>
+            </b-form-select>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+    </b-row>
+
+    <b-container fluid style="padding: 50px">
+      <!-- Main table element -->
+      <b-table
+        striped
+        show-empty
+        stacked="md"
+        hover
+        head-variant="dark"
+        :items="items"
+        :fields="fields"
+        :current-page="currentPage"
+        :per-page="perPage"
+        :filter="filter"
+        :sort-by.sync="sortBy"
+        :sort-desc.sync="sortDesc"
+        :sort-direction="sortDirection"
+        @filtered="onFiltered"
       >
-        <b-button v-b-toggle="'toggle1'" class="m-1" style="width: -webkit-fill-available">Colore</b-button>
-        <Toggle
-          name="Colore"
-          style="color: #ADB5BD"
-          id="toggle1"
-          :labelToggle="colorLabel"
-          dbFieldName="color"
-          v-on:childToParent="onToggleUpdating"
-        />
-        <b-button
-          v-b-toggle="'toggle2'"
-          class="m-1"
-          style="width: -webkit-fill-available"
-        >Content Rating</b-button>
-        <Toggle
-          name="Content Rating"
-          id="toggle2"
-          style="color: #ADB5BD"
-          :labelToggle="contentLabel"
-          dbFieldName="content_rating"
-          v-on:childToParent="onToggleUpdating"
-        />
-        <Slider/>
-      </ScaleRotate>
-      <main id="page-wrap">
-        <b-row align-h="end" style="padding: 40px 65px 0px 65px">
-          <b-col md="6" class="my-1" style="padding-top: 30px">
-            <b-form-group label-cols-sm="3" label="Filtra" class="mb-0">
-              <b-input-group>
-                <b-form-input v-model="filter" placeholder="Clicca per cercare"></b-form-input>
-                <b-input-group-append>
-                  <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
-                </b-input-group-append>
-              </b-input-group>
-            </b-form-group>
-          </b-col>
-          <b-col md="6" class="my-1" style="padding-top: 30px">
-            <b-form-group label-cols-sm="3" label="Film per pagina" class="mb-0">
-              <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
-            </b-form-group>
-          </b-col>
-        </b-row>
+        <template slot="movie_title" slot-scope="row" href="movie_imdb_link">{{ row.value }}</template>
+        <template slot="title_year" slot-scope="row">{{ row.value }}</template>
 
-        <b-row align-h="end" style="padding: 0 65px">
-          <b-col md="6" class="my-1">
-            <b-form-group label-cols-sm="3" label="Ordina" class="mb-0">
-              <b-input-group>
-                <b-form-select v-model="sortBy" :options="sortOptions">
-                  <option slot="first" :value="null">-- none --</option>
-                </b-form-select>
-                <b-form-select v-model="sortDesc" :disabled="!sortBy" slot="append">
-                  <option :value="false">Asc</option>
-                  <option :value="true">Desc</option>
-                </b-form-select>
-              </b-input-group>
-            </b-form-group>
-          </b-col>
-        </b-row>
+        <template slot="row-details" slot-scope="row">
+          <b-card>
+            <ul>
+              <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
+            </ul>
+          </b-card>
+        </template>
+      </b-table>
 
-        <b-container fluid style="padding: 50px">
-          <!-- Main table element -->
-          <b-table
-            striped
-            show-empty
-            stacked="md"
-            hover
-            head-variant="dark"
-            :items="items"
-            :fields="fields"
-            :current-page="currentPage"
+      <b-row>
+        <b-col md="12" class="my-1">
+          <b-pagination
+            v-model="currentPage"
+            :total-rows="totalRows"
             :per-page="perPage"
-            :filter="filter"
-            :sort-by.sync="sortBy"
-            :sort-desc.sync="sortDesc"
-            :sort-direction="sortDirection"
-            @filtered="onFiltered"
-          >
-            <template slot="movie_title" slot-scope="row" href="movie_imdb_link">{{ row.value }}</template>
-            <template slot="title_year" slot-scope="row">{{ row.value }}</template>
-
-            <template slot="row-details" slot-scope="row">
-              <b-card>
-                <ul>
-                  <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
-                </ul>
-              </b-card>
-            </template>
-          </b-table>
-
-          <b-row>
-            <b-col md="6" class="my-1">
-              <b-pagination
-                v-model="currentPage"
-                :total-rows="totalRows"
-                :per-page="perPage"
-                class="my-0"
-              ></b-pagination>
-            </b-col>
-          </b-row>
-        </b-container>
-      </main>
-    </div>
+            align="fill"
+            class="my-0"
+          ></b-pagination>
+        </b-col>
+      </b-row>
+    </b-container>
   </b-container>
 </template>
 
@@ -117,15 +146,11 @@
 import MovieService from "../services/MovieService";
 import Toggle from "./Toggle";
 import Slider from "./Slider";
-
-import { ScaleRotate } from "vue-burger-menu";
 import { Labels } from "../assets/labels";
-
 
 export default {
   name: "Home",
   components: {
-    ScaleRotate,
     Toggle,
     Slider
   },
@@ -139,6 +164,11 @@ export default {
   },
   data() {
     return {
+      drawer: null,
+      sidebarItems: [
+        { title: "Home", icon: "dashboard" },
+        { title: "About", icon: "question_answer" }
+      ],
       items: [],
       fields: [
         {
@@ -163,7 +193,8 @@ export default {
         content: ""
       },
       colorLabel: Labels.colorLabel,
-      contentLabel: Labels.contentRatingLabel
+      contentLabel: Labels.contentRatingLabel,
+      genresLabel: Labels.genresLabel
     };
   },
   computed: {
@@ -213,3 +244,10 @@ export default {
   }
 };
 </script>
+
+<style>
+img.resize {
+  width: 20px;
+  height: 20px;
+}
+</style>

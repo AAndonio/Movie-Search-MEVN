@@ -2,6 +2,7 @@
   <b-container fluid style="padding: 0 0;">
     <v-layout wrap>
       <v-navigation-drawer v-model="drawer" absolute temporary>
+        <h2 align="center">Filtri</h2>
         <v-list-group>
           <template v-slot:activator>
             <v-list-tile>
@@ -25,17 +26,17 @@
             </v-list-tile>
           </template>
           <div style="padding:0 20px; font-size: 1.3em">
-                <Toggle
-                  name="Content Rating"
-                  id="toggle2"
-                  style="color: #ADB5BD"
-                  :labelToggle="contentLabel"
-                  dbFieldName="content_rating"
-                  v-on:childToParent="onToggleUpdating"
-                />
+            <Toggle
+              name="Content Rating"
+              id="toggle2"
+              style="color: #ADB5BD"
+              :labelToggle="contentLabel"
+              dbFieldName="content_rating"
+              v-on:childToParent="onToggleUpdating"
+            />
           </div>
         </v-list-group>
-          <v-list-group>
+        <v-list-group>
           <template v-slot:activator>
             <v-list-tile>
               <v-list-tile-title>Generi</v-list-tile-title>
@@ -51,20 +52,32 @@
               v-on:childToParent="onToggleUpdating"
             />
           </div>
-          </v-list-group>
+        </v-list-group>
+        <v-list-group>
+          <template v-slot:activator>
+            <v-list-tile>
+              <v-list-tile-title>Anno</v-list-tile-title>
+            </v-list-tile>
+          </template>
+        
+        </v-list-group>
+      
       </v-navigation-drawer>
     </v-layout>
 
     <b-row align-h="end" style="padding: 40px 65px 0px 65px">
       <b-col md="3" class="my-1" style="padding-top: 30px">
         <button align-h="end" @click.stop="drawer = !drawer">
-          <img style=" background-color: Transparent;
+          <img
+            style=" background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
     overflow: hidden;
     outline:none;width: 50px;
-        height: 50px;" src="../assets/filter.png">
+        height: 50px;"
+            src="../assets/filter.png"
+          >
         </button>
       </b-col>
       <b-col md="3" class="my-1" style="padding-top: 30px">
@@ -129,13 +142,20 @@
 
       <b-row>
         <b-col md="12" class="my-1">
+          <!--
           <b-pagination
             v-model="currentPage"
             :total-rows="totalRows"
             :per-page="perPage"
             align="fill"
             class="my-0"
-          ></b-pagination>
+          ></b-pagination>-->
+
+          <v-container>
+            <v-layout justify-center>
+              <v-pagination v-model="currentPage" :length="totalRows/perPage" :total-visible="5"></v-pagination>
+            </v-layout>
+          </v-container>
         </b-col>
       </b-row>
     </b-container>

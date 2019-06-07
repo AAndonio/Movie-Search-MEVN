@@ -9,17 +9,17 @@
     </mdb-navbar-brand>
     <mdb-navbar-toggler>
       <mdb-navbar-nav>
-        <mdb-nav-item href="/" active>Home</mdb-nav-item>
+        <mdb-nav-item class="menuitem" href="/" active>Home</mdb-nav-item>
         <!-- Dropdown -->
-        <mdb-dropdown tag="li" class="nav-item">
+        <mdb-dropdown class="menuitem" tag="li">
           <mdb-dropdown-toggle tag="a" navLink slot="toggle" waves-fixed>Top 10 Film</mdb-dropdown-toggle>
           <mdb-dropdown-menu>
             <mdb-dropdown-item>Per Like</mdb-dropdown-item>
             <mdb-dropdown-item>Per Voto</mdb-dropdown-item>
           </mdb-dropdown-menu>
         </mdb-dropdown>
-        <mdb-nav-item href="#">Cast</mdb-nav-item>
-        <mdb-nav-item href="#">Budget</mdb-nav-item>
+        <mdb-nav-item class="menuitem" href="#">Cast</mdb-nav-item>
+        <mdb-nav-item class="menuitem" href="#">Budget</mdb-nav-item>
       </mdb-navbar-nav>
     </mdb-navbar-toggler>
   </mdb-navbar>
@@ -61,5 +61,10 @@ export default {
 <style>
 .navbar {
 background-color: #FFD700 !important;
+}
+
+.menuitem a{
+  font-weight: bold;
+  color: #8B0000 !important;
 }
 </style>

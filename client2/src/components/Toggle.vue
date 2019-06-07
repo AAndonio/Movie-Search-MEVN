@@ -11,10 +11,6 @@
 <script>
 export default {
   props: {
-    id: {
-      type: String,
-      required: true
-    },
     labelToggle: {
       type: Array,
       required: true

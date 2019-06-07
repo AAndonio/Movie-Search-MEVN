@@ -30,7 +30,7 @@ export default {
   },
   methods: {
 
-    aggiorna(event){
+    aggiorna(){
       this.$emit('childToParent', this.selected);
     }
 

@@ -20,6 +20,10 @@ export default {
     labelToggle: {
       type: Array,
       required: true
+    },
+    dbFieldName: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -31,7 +35,8 @@ export default {
   methods: {
 
     aggiorna(){
-      this.$emit('childToParent', this.selected);
+      var message = {fieldName: this.dbFieldName, selected: this.selected};
+      this.$emit('childToParent', message);
     }
 
   }

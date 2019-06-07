@@ -23,6 +23,8 @@
     "vue": "^2.6.10",
     "vue-bootstrap-slider": "^2.1.8",
     "vue-burger-menu": "^2.0.1",
+    "vue-range-slider": "^0.6.0",
+    "vue-slider-component": "^3.0.32",
     "vuetify": "^1.5.5"
   },
   "devDependencies": {

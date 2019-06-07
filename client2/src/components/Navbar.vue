@@ -12,7 +12,13 @@
         <mdb-nav-item href="/" active style="font-weight: bold">Home</mdb-nav-item>
         <!-- Dropdown -->
         <mdb-dropdown tag="li" class="nav-item">
-          <mdb-dropdown-toggle tag="a" navLink slot="toggle" waves-fixed style="font-weight: bold">Top 10 Film</mdb-dropdown-toggle>
+          <mdb-dropdown-toggle
+            tag="a"
+            navLink
+            slot="toggle"
+            waves-fixed
+            style="font-weight: bold"
+          >Top 10 Film</mdb-dropdown-toggle>
           <mdb-dropdown-menu>
             <mdb-dropdown-item style="font-weight: bold">Per Like</mdb-dropdown-item>
             <mdb-dropdown-item style="font-weight: bold">Per Voto</mdb-dropdown-item>
@@ -57,9 +63,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.navbar {
-  background-color: #ffd700 !important;
-}
-</style>

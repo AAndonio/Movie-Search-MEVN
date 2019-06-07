@@ -1,34 +1,40 @@
 <template>
-  <div id="app">
-    <v-app id="inspire">
-      <v-card flat color="transparent">
-        <v-card-text>
-          <v-layout row>
-            <v-flex class="px-3">
-              <v-range-slider v-model="range" :max="max" :min="min"></v-range-slider>
-            </v-flex>
-            <v-flex shrink style="width: 60px; margin-right: auto">
-              <v-text-field v-model="range[0]" class="mt-0" hide-details single-line type="number"></v-text-field>
-            </v-flex>
-            <v-flex shrink style="width: 60px">
-              <v-text-field v-model="range[1]" class="mt-0" hide-details single-line type="number"></v-text-field>
-            </v-flex>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-    </v-app>
+  <div style="margin: 10px 20px; padding: 0; height: 6px">
+    <vue-slider v-model="value_2" :interval="5" :min="0" :max="100"></vue-slider>
+    <v-layout row>
+      <v-flex shrink style="width: 60px; margin-right: auto">
+        <v-text-field v-model="value_2[0]" class="mt-0" hide-details single-line type="number" :min="0" :max="100"></v-text-field>
+      </v-flex>
+      <v-flex shrink style="width: 60px">
+        <v-text-field v-model="value_2[1]" class="mt-0" hide-details single-line type="number" :min="0" :max="100"></v-text-field>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
+module.exports = {
+  data: function() {
     return {
-      min: -50,
-      max: 90,
-      slider: 40,
-      range: [-20, 70]
+      value_2: [0, 50]
     };
   }
 };
 </script>
+
+<style>
+.vue-slider-dot-handle {
+  background-color: darkred !important;
+}
+.vue-slider-process {
+  background-color: goldenrod !important;
+}
+.vue-slider-dot-tooltip-inner {
+  border-color: goldenrod !important;
+  background-color: darkred !important;
+  color: gold !important;
+}
+.theme--light.v-input:not(.v-input--is-disabled) input{
+    color: darkred !important;
+}
+</style>

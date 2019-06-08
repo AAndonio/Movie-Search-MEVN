@@ -4,7 +4,7 @@ const Movie = require('../../models/movie');
 const router = express.Router();
 
 
-router.get('/type=:toptype&genres=:genre', async (req, res) => {
+router.get('/type=:toptype&genre=:genre', async (req, res) => {
 
     await Movie.where('genres').
     all(req.params.genre).

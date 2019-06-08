@@ -3,106 +3,134 @@
     <v-layout wrap>
       <v-navigation-drawer v-model="drawer" absolute temporary>
         <h2 align="center">Filtri</h2>
-        <v-list-group>
-          <template v-slot:activator>
-            <v-list-tile>
-              <v-list-tile-title class="sidebar-item">Colori</v-list-tile-title>
-            </v-list-tile>
-          </template>
-          <div style="padding:0 20px; font-size: 1.3em">
-            <Toggle
-              name="Colore"
-              style="color: #ADB5BD; font-weight: 400;"
-              :labelToggle="colorLabel"
-              dbFieldName="color"
-              v-on:childToParent="onToggleUpdating"
-            />
-          </div>
-        </v-list-group>
-        <v-list-group>
-          <template v-slot:activator>
-            <v-list-tile>
-              <v-list-tile-title class="sidebar-item">Content Rating</v-list-tile-title>
-            </v-list-tile>
-          </template>
-          <div style="padding:0 20px; font-size: 1.3em">
-            <Toggle
-              name="Content Rating"
-              id="toggle2"
-              style="color: #ADB5BD; font-weight: 400;"
-              :labelToggle="contentLabel"
-              dbFieldName="content_rating"
-              v-on:childToParent="onToggleUpdating"
-            />
-          </div>
-        </v-list-group>
-        <v-list-group>
-          <template v-slot:activator>
-            <v-list-tile>
-              <v-list-tile-title class="sidebar-item">Generi</v-list-tile-title>
-            </v-list-tile>
-          </template>
-          <div style="padding:0 20px; font-size: 1.3em">
-            <Toggle
-              name="Genres"
-              id="toggle3"
-              style="color: #ADB5BD; font-weight: 400;"
-              :labelToggle="genresLabel"
-              dbFieldName="genres"
-              v-on:childToParent="onToggleUpdating"
-            />
-          </div>
-        </v-list-group>
-        <v-list-group>
-          <template v-slot:activator>
-            <v-list-tile>
-              <v-list-tile-title class="sidebar-item">Anno</v-list-tile-title>
-            </v-list-tile>
-          </template>
-          <div style="display:block">
-            <Slider
-              name="Year"
-              id="slider1"
-            />
-          </div>
-        </v-list-group>
-        <v-list-group>
-          <template v-slot:activator>
-            <v-list-tile>
-              <v-list-tile-title class="sidebar-item">Budget</v-list-tile-title>
-            </v-list-tile>
-          </template>
-            <Slider
-              name="Budget"
-              id="slider2"
-            />
-        </v-list-group>
-                <v-list-group>
-          <template v-slot:activator>
-            <v-list-tile>
-              <v-list-tile-title>Regista</v-list-tile-title>
-            </v-list-tile>
-          </template>
-          <div>
-            <InputText name="Incasso" id="inputText1"/>
-          </div>
-        </v-list-group>
-        <v-list-group>
-          <template v-slot:activator>
-            <v-list-tile>
-              <v-list-tile-title>Attore</v-list-tile-title>
-            </v-list-tile>
-          </template>
-          <div>
-            <InputText name="Attore1" id="inputText2"/>
-          </div>
-          <div>
-            <InputText name="Attore2" id="inputText3"/>
-          </div>
-          <div>
-            <InputText name="Attore3" id="inputText4"/>
-          </div>
-        </v-list-group>
+        <v-list>
+          <v-list-group>
+            <template v-slot:activator>
+              <v-list-tile>
+                <v-list-tile-title class="sidebar-item">Colori</v-list-tile-title>
+              </v-list-tile>
+            </template>
+            <div style="padding:0 20px; font-size: 1.3em">
+              <Toggle
+                name="Colore"
+                style="color: #ADB5BD; font-weight: 400;"
+                :labelToggle="colorLabel"
+                dbFieldName="color"
+                v-on:childToParent="onToggleUpdating"
+              />
+            </div>
+          </v-list-group>
+          <v-list-group>
+            <template v-slot:activator>
+              <v-list-tile>
+                <v-list-tile-title class="sidebar-item">Content Rating</v-list-tile-title>
+              </v-list-tile>
+            </template>
+            <div style="padding:0 20px; font-size: 1.3em">
+              <Toggle
+                name="Content Rating"
+                id="toggle2"
+                style="color: #ADB5BD; font-weight: 400;"
+                :labelToggle="contentLabel"
+                dbFieldName="content_rating"
+                v-on:childToParent="onToggleUpdating"
+              />
+            </div>
+          </v-list-group>
+          <v-list-group>
+            <template v-slot:activator>
+              <v-list-tile>
+                <v-list-tile-title class="sidebar-item">Generi</v-list-tile-title>
+              </v-list-tile>
+            </template>
+            <div style="padding:0 20px; font-size: 1.3em">
+              <Toggle
+                name="Genres"
+                id="toggle3"
+                style="color: #ADB5BD; font-weight: 400;"
+                :labelToggle="genresLabel"
+                dbFieldName="genres"
+                v-on:childToParent="onToggleUpdating"
+              />
+            </div>
+          </v-list-group>
+          <v-list-group>
+            <template v-slot:activator>
+              <v-list-tile>
+                <v-list-tile-title class="sidebar-item">Anno</v-list-tile-title>
+              </v-list-tile>
+            </template>
+            <div style="display:block">
+              <Slider
+                name="Year"
+                :values="yearLabel"
+                v-on:childToParent="onSliderUpdating"
+              />
+            </div>
+          </v-list-group>
+          <v-list-group>
+            <template v-slot:activator>
+              <v-list-tile>
+                <v-list-tile-title class="sidebar-item">Budget</v-list-tile-title>
+              </v-list-tile>
+            </template>
+              <Slider
+                name="Budget"
+                :values="budgetLabel"
+                v-on:childToParent="onSliderUpdating"
+              />
+          </v-list-group>
+                    <v-list-group>
+            <template v-slot:activator>
+              <v-list-tile>
+                <v-list-tile-title class="sidebar-item">Incasso</v-list-tile-title>
+              </v-list-tile>
+            </template>
+              <Slider
+                name="Gross"
+                :values="grossLabel"
+                v-on:childToParent="onSliderUpdating"
+              />
+          </v-list-group>
+                    <v-list-group>
+            <template v-slot:activator>
+              <v-list-tile>
+                <v-list-tile-title class="sidebar-item">IMDB Rating</v-list-tile-title>
+              </v-list-tile>
+            </template>
+              <Slider
+                name="Gross"
+                :values="ratingLabel"
+                v-on:childToParent="onSliderUpdating"
+              />
+          </v-list-group>
+                  <v-list-group>
+            <template v-slot:activator>
+              <v-list-tile>
+                <v-list-tile-title>Regista</v-list-tile-title>
+              </v-list-tile>
+            </template>
+            <div>
+              <InputText name="Regista" id="inputText1"/>
+            </div>
+          </v-list-group>
+          <v-list-group>
+            <template v-slot:activator>
+              <v-list-tile>
+                <v-list-tile-title>Attore</v-list-tile-title>
+              </v-list-tile>
+            </template>
+            <div>
+              <InputText name="Attore1" id="inputText2"/>
+            </div>
+            <div>
+              <InputText name="Attore2" id="inputText3"/>
+            </div>
+            <div>
+              <InputText name="Attore3" id="inputText4"/>
+            </div>
+          </v-list-group>
+        </v-list>
       </v-navigation-drawer>
     </v-layout>
 
@@ -256,7 +284,11 @@ export default {
       },
       colorLabel: Labels.colorLabel,
       contentLabel: Labels.contentRatingLabel,
-      genresLabel: Labels.genresLabel
+      genresLabel: Labels.genresLabel,
+      yearLabel: Labels.yearLabel,
+      budgetLabel: Labels.budgetLabel,
+      grossLabel: Labels.grossLabel,
+      ratingLabel: Labels.ratingLabel
     };
   },
   computed: {
@@ -300,6 +332,20 @@ export default {
         delete this.request[field];
       } else {
         this.request[field] = value.selected;
+      }
+      this.getMovies();
+    },    
+    onSliderUpdating(message) {
+      console.log("Eccolo")
+
+      var minField = message.minField;
+      var maxField = message.maxField;
+      if (message.selectedMax == message.selectedMin) {
+        delete this.request[minField];
+        delete this.request[maxField];
+      } else {
+        this.request[minField] = message.selectedMin;
+        this.request[maxField] = message.selectedMax;
       }
       this.getMovies();
     }

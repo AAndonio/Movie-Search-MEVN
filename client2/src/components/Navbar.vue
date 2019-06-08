@@ -25,10 +25,6 @@ import {
   mdbNavbarBrand,
   mdbNavbarToggler,
   mdbNavbarNav,
-  mdbDropdown,
-  mdbDropdownToggle,
-  mdbDropdownMenu,
-  mdbDropdownItem,
   mdbNavItem
 } from "mdbvue";
 
@@ -39,10 +35,6 @@ export default {
     mdbNavbarBrand,
     mdbNavbarToggler,
     mdbNavbarNav,
-    mdbDropdown,
-    mdbDropdownToggle,
-    mdbDropdownMenu,
-    mdbDropdownItem,
     mdbNavItem
   },
   props: {

@@ -1,29 +1,43 @@
 <template>
   <div style="margin: 10px 20px; padding: 0">
-    <vue-slider v-model="value_2" :interval="5" :min="0" :max="100"></vue-slider>
+    <vue-slider v-model="selectedValues" :interval="interval" :min="min" :max="max" v-on:drag-end="aggiorna"></vue-slider>
     <v-layout row>
-      <v-flex shrink style="width: 60px; margin-right: auto">
-        <v-text-field v-model="value_2[0]" class="mt-0" hide-details single-line type="number" :min="0" :max="100"></v-text-field>
+      <v-flex shrink style="width: 120px; margin-right: auto">
+        <v-text-field v-model="selectedValues[0]" class="mt-0" hide-details single-line type="number" :min="0" :max="100"></v-text-field>
       </v-flex>
-      <v-flex shrink style="width: 60px">
-        <v-text-field v-model="value_2[1]" class="mt-0" hide-details single-line type="number" :min="0" :max="100"></v-text-field>
+      <v-flex shrink style="width: 120px">
+        <v-text-field v-model="selectedValues[1]" class="mt-0" hide-details single-line type="number" :min="0" :max="100"></v-text-field>
       </v-flex>
     </v-layout>
   </div>
 </template>
 
 <script>
-module.exports = {
+export default {
   props: {
     values: {
       type: Object,
       required: true
     }
   },
-  data: function() {
+  data() {
     return {
-      value_2: [0, 50]
+      selectedValues: [this.values.min,this.values.min],
+      min: this.values.min,
+      max: this.values.max,
+      interval: this.values.interval,
+      minField: this.values.field1,
+      maxField: this.values.field2,
     };
+  },
+  methods: {
+    aggiorna() {
+      var message = { minField: this.minField, 
+                    selectedMin: this.selectedValues[0],
+                    maxField: this.maxField,
+                    selectedMax: this.selectedValues[1]};
+      this.$emit("childToParent", message);
+    }
   }
 };
 </script>

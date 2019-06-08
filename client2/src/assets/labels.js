@@ -53,7 +53,32 @@ export const Labels = {
     ],
     yearLabel: {
         min: 1916,
-        max: 2019
+        max: 2019,
+        interval: 1,
+        field1: "min_year",
+        field2: "max_year"
+    },
+    budgetLabel: {
+        min: 0,
+        max: 500000000,
+        interval: 122155,
+        field1: "min_budget",
+        field2: "max_budget"
+
+    },
+    grossLabel: {
+        min: 0,
+        max: 2000000000,
+        interval: 3,
+        field1: "min_gross",
+        field2: "max_gross"
+    },
+    ratingLabel: {
+        min: 0,
+        max: 10,
+        interval: 1,
+        field1: "min_rating",
+        field2: "max_gross"
     },
     toptenTypeLabel: [
         { value: 'movie_facebook_likes', text: 'Per like' },

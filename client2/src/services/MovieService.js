@@ -11,6 +11,6 @@ export default {
     },
 
     getTopTen(toptenType, genre){
-        return Api().get('topten/type='+toptenType+'&genres='+genre);
+        return Api().get('topten/type='+toptenType+'&genre='+genre);
     },
 }

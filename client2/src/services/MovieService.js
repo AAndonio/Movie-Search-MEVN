@@ -8,5 +8,9 @@ export default {
 
     getMoviesSelection(request){
         return Api().post('/', request);
-    }
+    },
+
+    getTopTen(toptenType, genre){
+        return Api().get('topten/type='+toptenType+'&genres='+genre);
+    },
 }

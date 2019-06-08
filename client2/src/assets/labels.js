@@ -50,5 +50,13 @@ export const Labels = {
         { text: "Thriller", value: "Thriller" },
         { text: "War", value: "War" },
         { text: "Western", value: "Western" }
+    ],
+    yearLabel: {
+        min: 1916,
+        max: 2019
+    },
+    toptenTypeLabel: [
+        { value: 'movie_facebook_likes', text: 'Per like' },
+        { value: 'imdb_score', text: 'Per voto' },
     ]
 }

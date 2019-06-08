@@ -3,6 +3,7 @@ const Movie = require('../models/movie');
 
 const router = express.Router();
 
+/* Funzione per estrarre tutti i generi
 router.get('/distincGenres', async (req,res) => {
     await Movie.distinct('genres').exec((err,genres) => {
         if(err){
@@ -14,7 +15,7 @@ router.get('/distincGenres', async (req,res) => {
                 res.status(200).send("Nessun film soddisfa i requisiti");
         }
     });
-});
+});*/
 
 
 
@@ -77,7 +78,7 @@ router.post('/', async (req,res) => {
     
 
 
-    query.select('movie_title title_year movie_imdb_link').exec((err, movies) => {
+    query.select('movie_title title_year director_name movie_imdb_link').exec((err, movies) => {
         if(err){
             res.status(500).send(err);
         }

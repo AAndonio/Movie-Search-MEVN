@@ -6,13 +6,13 @@
         <v-list-group>
           <template v-slot:activator>
             <v-list-tile>
-              <v-list-tile-title>Colori</v-list-tile-title>
+              <v-list-tile-title class="sidebar-item">Colori</v-list-tile-title>
             </v-list-tile>
           </template>
           <div style="padding:0 20px; font-size: 1.3em">
             <Toggle
               name="Colore"
-              style="color: #ADB5BD"
+              style="color: #ADB5BD; font-weight: 400;"
               :labelToggle="colorLabel"
               dbFieldName="color"
               v-on:childToParent="onToggleUpdating"
@@ -22,14 +22,14 @@
         <v-list-group>
           <template v-slot:activator>
             <v-list-tile>
-              <v-list-tile-title>Content Rating</v-list-tile-title>
+              <v-list-tile-title class="sidebar-item">Content Rating</v-list-tile-title>
             </v-list-tile>
           </template>
           <div style="padding:0 20px; font-size: 1.3em">
             <Toggle
               name="Content Rating"
               id="toggle2"
-              style="color: #ADB5BD"
+              style="color: #ADB5BD; font-weight: 400;"
               :labelToggle="contentLabel"
               dbFieldName="content_rating"
               v-on:childToParent="onToggleUpdating"
@@ -39,14 +39,14 @@
         <v-list-group>
           <template v-slot:activator>
             <v-list-tile>
-              <v-list-tile-title>Generi</v-list-tile-title>
+              <v-list-tile-title class="sidebar-item">Generi</v-list-tile-title>
             </v-list-tile>
           </template>
           <div style="padding:0 20px; font-size: 1.3em">
             <Toggle
               name="Genres"
               id="toggle3"
-              style="color: #ADB5BD"
+              style="color: #ADB5BD; font-weight: 400;"
               :labelToggle="genresLabel"
               dbFieldName="genres"
               v-on:childToParent="onToggleUpdating"
@@ -56,12 +56,53 @@
         <v-list-group>
           <template v-slot:activator>
             <v-list-tile>
-              <v-list-tile-title>Anno</v-list-tile-title>
+              <v-list-tile-title class="sidebar-item">Anno</v-list-tile-title>
             </v-list-tile>
           </template>
-        
+          <div style="display:block">
+            <Slider
+              name="Year"
+              id="slider1"
+            />
+          </div>
         </v-list-group>
-      
+        <v-list-group>
+          <template v-slot:activator>
+            <v-list-tile>
+              <v-list-tile-title class="sidebar-item">Budget</v-list-tile-title>
+            </v-list-tile>
+          </template>
+            <Slider
+              name="Budget"
+              id="slider2"
+            />
+        </v-list-group>
+                <v-list-group>
+          <template v-slot:activator>
+            <v-list-tile>
+              <v-list-tile-title>Regista</v-list-tile-title>
+            </v-list-tile>
+          </template>
+          <div>
+            <InputText name="Incasso" id="inputText1"/>
+          </div>
+        </v-list-group>
+        <v-list-group>
+          <template v-slot:activator>
+            <v-list-tile>
+              <v-list-tile-title>Attore</v-list-tile-title>
+            </v-list-tile>
+          </template>
+          <div>
+            <InputText name="Attore1" id="inputText2"/>
+          </div>
+          <div>
+            <InputText name="Attore2" id="inputText3"/>
+          </div>
+          <div>
+            <InputText name="Attore3" id="inputText4"/>
+          </div>
+        </v-list-group>
       </v-navigation-drawer>
     </v-layout>
 
@@ -85,7 +126,7 @@
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Clicca per cercare"></b-form-input>
             <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+              <b-button :disabled="!filter" @click="filter = ''" style="margin: 0">Clear</b-button>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -101,7 +142,8 @@
             <b-form-select v-model="sortBy" :options="sortOptions">
               <option slot="first" :value="null">-- none --</option>
             </b-form-select>
-            <b-form-select v-model="sortDesc" :disabled="!sortBy" slot="append">
+            <b-form-select v-model="sortDesc" :disabled="!sortBy" slot="append" 
+            style="background-color: #b45a5a !important; color: white;">
               <option :value="false">Asc</option>
               <option :value="true">Desc</option>
             </b-form-select>
@@ -128,8 +170,10 @@
         :sort-direction="sortDirection"
         @filtered="onFiltered"
       >
-        <template slot="movie_title" slot-scope="row" href="movie_imdb_link">{{ row.value }}</template>
+        <template slot="movie_title" slot-scope="row">{{ row.value }}</template>
         <template slot="title_year" slot-scope="row">{{ row.value }}</template>
+        <template slot="director_name" slot-scope="row">{{ row.value }}</template>
+        <template slot="movie_imdb_link" slot-scope="row"><a :href="row.value">Link</a></template>
 
         <template slot="row-details" slot-scope="row">
           <b-card>
@@ -140,22 +184,16 @@
         </template>
       </b-table>
 
-      <b-row>
-        <b-col md="12" class="my-1">
-          <!--
+      <b-row align-h="center">
+        <b-col  md="5" class="my-1">
+         
           <b-pagination
             v-model="currentPage"
             :total-rows="totalRows"
             :per-page="perPage"
             align="fill"
             class="my-0"
-          ></b-pagination>-->
-
-          <v-container>
-            <v-layout justify-center>
-              <v-pagination v-model="currentPage" :length="totalRows/perPage" :total-visible="5"></v-pagination>
-            </v-layout>
-          </v-container>
+          ></b-pagination>
         </b-col>
       </b-row>
     </b-container>
@@ -166,13 +204,15 @@
 import MovieService from "../services/MovieService";
 import Toggle from "./Toggle";
 import Slider from "./Slider";
+import InputText from "./InputText";
 import { Labels } from "../assets/labels";
 
 export default {
   name: "Home",
   components: {
     Toggle,
-    Slider
+    Slider,
+    InputText
   },
   props: {
     request: {
@@ -197,7 +237,9 @@ export default {
           sortable: true,
           sortDirection: "desc"
         },
-        { key: "title_year", label: "Anno", sortable: true }
+        { key: "title_year", label: "Anno", sortable: true },
+        { key: "director_name", label: "Regista", sortable: true },
+        { key: "movie_imdb_link", label: "IMDB"}
       ],
       totalRows: 1,
       currentPage: 1,
@@ -269,5 +311,54 @@ export default {
 img.resize {
   width: 20px;
   height: 20px;
+}
+.btn-secondary {
+  background-color: darkred !important;
+}
+.pagination .page-item.active .page-link {
+  background-color: darkred !important;
+  color: goldenrod !important;
+}
+.input-group > .custom-select:not(:last-child),
+.input-group > .form-control:not(:last-child) {
+  background: rgba(255, 215, 0, 0.1) !important;
+}
+.custom-control-label::before,
+.custom-file-label,
+.custom-select {
+  background: rgba(255, 215, 0, 0.1) !important;
+}
+.input-group > .custom-select:not(:last-child):focus,
+.input-group > .form-control:not(:last-child):focus {
+  -webkit-box-shadow: inset 0 0 0 0.2rem rgba(255, 215, 0, 0.3) !important;
+  box-shadow: inset 0 0 0 0.2rem rgba(255, 215, 0, 0.3) !important;
+}
+.custom-control-label::before,
+.custom-file-label,
+.custom-select:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.3) !important;
+  box-shadow: inset 0 0 0 0.2rem rgba(255, 215, 0, 0.3) !important;
+}
+.table .thead-dark th {
+  background-color: darkred !important;
+  border-color: darkred !important;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 215, 0, 0.1) !important;
+}
+.table-striped tbody tr:nth-of-type(odd):focus,
+.table-striped tbody tr:nth-of-type(even):focus {
+  background-color: rgba(255, 215, 0, 0.25) !important;
+}
+.form-control {
+  background-color: rgba(255, 215, 0, 0.25) !important;
+}
+.form-control:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.3) !important;
+  box-shadow: inset 0 0 0 0.2rem rgba(255, 215, 0, 0.3) !important;
+}
+.v-list__tile__title {
+  color: darkred !important;
+  font-weight: bold !important;
 }
 </style>

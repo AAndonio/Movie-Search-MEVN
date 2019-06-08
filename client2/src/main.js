@@ -10,6 +10,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbvue/build/css/mdb.css';
 
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
+
+Vue.component('VueSlider', VueSlider)
+
 import Vuetify from 'vuetify'
 
 Vue.use(Vuetify)

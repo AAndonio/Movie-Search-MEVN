@@ -3,10 +3,10 @@
     <vue-slider v-model="selectedValues" :interval="interval" :adsorb="true"  :marks="marks" :min="min" :max="max" v-on:drag-end="aggiorna"></vue-slider>
     <v-layout row>
       <v-flex shrink style="width: 120px; margin-right: auto">
-        <v-text-field v-model="selectedValues[0]" class="mt-0" hide-details single-line type="number" :min="0" :max="100"></v-text-field>
+        <v-text-field v-model="selectedValues[0]" class="mt-0" hide-details single-line type="number" :min="min" :max="max"></v-text-field>
       </v-flex>
       <v-flex shrink style="width: 120px">
-        <v-text-field v-model="selectedValues[1]" class="mt-0" hide-details single-line type="number" :min="0" :max="100"></v-text-field>
+        <v-text-field v-model="selectedValues[1]" class="mt-0" hide-details single-line type="number" :min="min" :max="max"></v-text-field>
       </v-flex>
     </v-layout>
   </div>

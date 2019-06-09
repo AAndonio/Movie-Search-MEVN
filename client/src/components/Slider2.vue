@@ -57,17 +57,10 @@ export default {
         maxField: this.maxField,
         selectedMax: this.getRealValue(this.selectedValues[1])
       };
-              console.log(message.minField);
-        console.log(message.maxField);
-
-
       this.$emit("childToParent", message);
     },
 
     getRealValue(value){
-      if(value === "0"){
-        console.log("Mamma mia");
-      }
       return this.realValues[value];
     }
   }

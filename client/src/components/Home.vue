@@ -340,7 +340,6 @@ export default {
       var response = await MovieService.getMoviesSelection(this.request);
       this.items = response.data;
       this.totalRows = this.items.length;
-      console.log(this.request);
     },
 
     info(item, index, button) {
@@ -370,7 +369,6 @@ export default {
       var minField = message.minField;
       var maxField = message.maxField;
       if (message.selectedMax == message.selectedMin) {
-        console.log("siamo qui ciao");
         delete this.request[minField];
         delete this.request[maxField];
       } else {

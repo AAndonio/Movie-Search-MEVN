@@ -19,7 +19,6 @@ router.get('/genre=:genre', async (req, res) => {
             res.status(500).send(err);
         }
         if(movies) {
-            console.log(movies);
                 res.status(200).send(movies);
             if(movies === [])
                 res.status(200).send("Nessun film soddisfa i requisiti");

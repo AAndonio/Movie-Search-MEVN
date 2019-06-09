@@ -2,20 +2,14 @@
   <b-container fluid style="padding: 0 0;">
     
     <b-row align-h="end" style="padding: 40px 65px 0px 65px">
-      <b-col md="3" class="my-1" style="padding-top: 70px"> Cerca gli attori comparsi in più film di un determinato genere</b-col>
-      <b-col md="3" class="my-1" style="padding-top: 30px">
-        <p>Selezionare numero di film</p>
-        <b-form-select
-          v-model="toptenTypeSelected"
-          :options="toptenTypeLabel"
-          v-on:change="getTopTen"
-        ></b-form-select>
+      <b-col md="12" class="my-1" style="padding-top: 30px">
+        <p>Voglio il numero di apparizioni di attori che hanno recitato in film di genere</p>
       </b-col>
-      <b-col md="3" class="my-1" style="padding-top: 30px">
-        <p>Selezionare il genere</p>
-        <b-form-select v-model="genreSelected" :options="genresLabel" v-on:change="getTopTen"></b-form-select>
+    </b-row>
+        <b-row align-h="end" style="padding: 0px 65px 0px 65px">
+      <b-col md="12" class="my-1" style="padding-top: 30px">
+        <b-form-select v-model="genreSelected" :options="genresLabel" v-on:change="getCastAppareances"></b-form-select>
       </b-col>
-      <b-col md="3" class="my-1" style="padding-top: 30px"></b-col>
     </b-row>
 
     <b-container fluid style="padding: 50px">
@@ -36,7 +30,7 @@
         :sort-direction="sortDirection"
         @filtered="onFiltered"
       >
-        <template slot="movie_title" slot-scope="row" href="movie_imdb_link">{{ row.value }}</template>
+        <template slot="_id" slot-scope="row" href="movie_imdb_link">{{ row.value }}</template>
         <template slot="title_year" slot-scope="row">{{ row.value }}</template>
 
         <template slot="row-details" slot-scope="row">
@@ -64,6 +58,34 @@
 </template>
 
 <script>
-export default {};
-</script>
+import MovieService from "../services/MovieService";
+import { Labels } from "../assets/labels";
 
+export default {
+
+
+    data() {
+      return {
+        items: [],
+        fields: [
+        { key: "_id",label: "Attore"},
+        { key: "total", label: "Apparizioni"}
+      ],
+        numberOfMovies: null,
+        genreSelected: null,
+        genresLabel: Labels.genresLabel,
+        castLabel: Labels.castLabel,
+        totalRows: 1,
+        currentPage: 1,
+        perPage: 10,
+      }
+    }, 
+    methods: {
+      async getCastAppareances() {
+        var response = await MovieService.getAppareances(this.numberOfMovies, this.genreSelected);
+        this.items = response.data;
+        this.totalRows = this.items.length;
+      },
+    }
+  }
+</script>

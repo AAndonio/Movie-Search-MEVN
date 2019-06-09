@@ -385,9 +385,7 @@ export default {
       }
 
       var arrayActors = Object.values(this.actors);
-
-      console.log(arrayActors);
-
+      
       if (arrayActors.length == 0) {
         delete this.request["actors"];
       } else {

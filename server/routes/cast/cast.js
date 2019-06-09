@@ -4,15 +4,16 @@ const Movie = require('../../models/movie');
 const router = express.Router();
 
 
-router.get('/movieNumber', async (req, res) => {
+router.get('/genre=:genre', async (req, res) => {
 
     await Movie.aggregate([
-        {$project: {genres: 1, actors: 1}},
+        {$project: {movie_title: 1, genres: 1, actors: 1}},
         {$unwind : "$actors" },
         {$unwind : "$genres" },
-        {$match: {genres: "Action"}},
+        {$match: {genres: req.params.genre}},
         {$group: {_id: "$actors", total : {$sum : 1}}},
-        {$match: {total: {$gt: 3}}}
+        //{$match: {total: {$gt: Number(req.params.number)}}},
+        {$sort: {total: -1}}
     ]).exec( (err, movies) =>{
         if(err){
             res.status(500).send(err);

@@ -13,4 +13,8 @@ export default {
     getTopTen(toptenType, genre){
         return Api().get('topten/type='+toptenType+'&genre='+genre);
     },
+
+    getAppareances(number, genre){
+        return Api().get('cast/genre='+genre);
+    }
 }

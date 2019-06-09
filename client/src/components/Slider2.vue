@@ -7,7 +7,7 @@
       :max="max"
       :adsorb="true"
       :data="data"
-      :marks="true"
+      :marks="marks"
       v-on:drag-end="aggiorna"
       class="slider2"
     ></vue-slider>
@@ -31,6 +31,18 @@ export default {
       minField: this.values.field1,
       maxField: this.values.field2,
       data: [
+        "100",
+        "500",
+        "1000",
+        "5000",
+        "1000000",
+        "25000000",
+        "50000000",
+        "100000000",
+        "250000000",
+        "500000000"
+      ],
+      marks: [
         "100k",
         "500k",
         "1ML",

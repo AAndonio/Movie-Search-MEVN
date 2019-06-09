@@ -99,5 +99,14 @@ export const Labels = {
     toptenTypeLabel: [
         { value: 'movie_facebook_likes', text: 'Per like' },
         { value: 'imdb_score', text: 'Per voto' },
+    ],
+    castLabel: [
+        { value: '1', text: 'Più di 1 film' },
+        { value: '2', text: 'Più di 2 film' },
+        { value: '3', text: 'Più di 3 film' },
+        { value: '4', text: 'Più di 4 film' },
+        { value: '5', text: 'Più di 5 film' },
+        { value: '6', text: 'Più di 6 film' },
+        { value: '7', text: 'Più di 7 film' },
     ]
 }

@@ -71,6 +71,18 @@
           <v-list-group>
             <template v-slot:activator>
               <v-list-tile>
+                <v-list-tile-title class="sidebar-item">Durata</v-list-tile-title>
+              </v-list-tile>
+            </template>
+              <Slider
+                name="Duration"
+                :values="durationLabel"
+                v-on:childToParent="onSliderUpdating"
+              />
+          </v-list-group>
+          <v-list-group>
+            <template v-slot:activator>
+              <v-list-tile>
                 <v-list-tile-title class="sidebar-item">Budget</v-list-tile-title>
               </v-list-tile>
             </template>
@@ -92,26 +104,38 @@
                 v-on:childToParent="onSliderUpdating"
               />
           </v-list-group>
-                    <v-list-group>
+          <v-list-group>
             <template v-slot:activator>
               <v-list-tile>
                 <v-list-tile-title class="sidebar-item">IMDB Rating</v-list-tile-title>
               </v-list-tile>
             </template>
               <Slider
-                name="Gross"
+                name="Rating"
                 :values="ratingLabel"
                 v-on:childToParent="onSliderUpdating"
               />
           </v-list-group>
-                  <v-list-group>
+                    <v-list-group>
+            <template v-slot:activator>
+              <v-list-tile>
+                <v-list-tile-title class="sidebar-item">Numero di recensioni dalla critica</v-list-tile-title>
+              </v-list-tile>
+            </template>
+              <Slider
+                name="Critics"
+                :values="criticLabel"
+                v-on:childToParent="onSliderUpdating"
+              />
+          </v-list-group>
+          <v-list-group>
             <template v-slot:activator>
               <v-list-tile>
                 <v-list-tile-title>Regista</v-list-tile-title>
               </v-list-tile>
             </template>
             <div>
-              <InputText name="Regista" id="inputText1"/>
+              <InputText name="Regista" id="1" v-on:childToParent="onDirectorUpdating"/>
             </div>
           </v-list-group>
           <v-list-group>
@@ -121,13 +145,13 @@
               </v-list-tile>
             </template>
             <div>
-              <InputText name="Attore1" id="inputText2"/>
+              <InputText id="1" v-on:childToParent="onActorUpdating"/>
             </div>
             <div>
-              <InputText name="Attore2" id="inputText3"/>
+              <InputText id="2" v-on:childToParent="onActorUpdating"/>
             </div>
             <div>
-              <InputText name="Attore3" id="inputText4"/>
+              <InputText id="3" v-on:childToParent="onActorUpdating"/>
             </div>
           </v-list-group>
         </v-list>
@@ -201,6 +225,8 @@
         <template slot="movie_title" slot-scope="row">{{ row.value }}</template>
         <template slot="title_year" slot-scope="row">{{ row.value }}</template>
         <template slot="director_name" slot-scope="row">{{ row.value }}</template>
+        <template slot="duration" slot-scope="row">{{ row.value }}</template>
+        <template slot="imdb_score" slot-scope="row">{{ row.value }}</template>
         <template slot="movie_imdb_link" slot-scope="row"><a :href="row.value">Link</a></template>
 
         <template slot="row-details" slot-scope="row">
@@ -267,6 +293,8 @@ export default {
         },
         { key: "title_year", label: "Anno", sortable: true },
         { key: "director_name", label: "Regista", sortable: true },
+        { key: "duration", label: "Durata"},
+        { key: "imdb_score", label: "Voto"},
         { key: "movie_imdb_link", label: "IMDB"}
       ],
       totalRows: 1,
@@ -288,7 +316,10 @@ export default {
       yearLabel: Labels.yearLabel,
       budgetLabel: Labels.budgetLabel,
       grossLabel: Labels.grossLabel,
-      ratingLabel: Labels.ratingLabel
+      ratingLabel: Labels.ratingLabel,
+      durationLabel: Labels.durationLabel,
+      criticLabel: Labels.criticLabel,
+      actors: {},
     };
   },
   computed: {
@@ -336,8 +367,6 @@ export default {
       this.getMovies();
     },    
     onSliderUpdating(message) {
-      console.log("Eccolo")
-
       var minField = message.minField;
       var maxField = message.maxField;
       if (message.selectedMax == message.selectedMin) {
@@ -346,6 +375,34 @@ export default {
       } else {
         this.request[minField] = message.selectedMin;
         this.request[maxField] = message.selectedMax;
+      }
+      this.getMovies();
+    }
+    ,    
+    onActorUpdating(message) {
+      if(message.newValue === ""){
+        delete this.actors[message.id];
+      } else {
+        this.actors[message.id] = message.newValue; 
+      }
+
+      var arrayActors = Object.values(this.actors);
+
+      console.log(arrayActors);
+
+      if (arrayActors.length == 0) {
+        delete this.request["actors"];
+      } else {
+        this.request["actors"] = arrayActors;
+      }
+      this.getMovies();
+    },
+
+    onDirectorUpdating(message) {
+      if(message.newValue === ""){
+        delete this.request["director_name"];
+      } else {
+        this.request["director_name"] = message.newValue; 
       }
       this.getMovies();
     }

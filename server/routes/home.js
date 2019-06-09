@@ -78,7 +78,7 @@ router.post('/', async (req,res) => {
     
 
 
-    query.select('movie_title title_year director_name movie_imdb_link').exec((err, movies) => {
+    query.select('movie_title title_year director_name duration imdb_score movie_imdb_link').exec((err, movies) => {
         if(err){
             res.status(500).send(err);
         }

@@ -78,7 +78,21 @@ export const Labels = {
         max: 10,
         interval: 1,
         field1: "min_rating",
-        field2: "max_gross"
+        field2: "max_rating"
+    },
+    durationLabel: {
+        min: 0,
+        max: 600,
+        interval: 30,
+        field1: "min_duration",
+        field2: "max_duration"
+    },
+    criticLabel: {
+        min: 0,
+        max: 1000,
+        interval: 50,
+        field1: "min_critic",
+        field2: "max_critic"
     },
     toptenTypeLabel: [
         { value: 'movie_facebook_likes', text: 'Per like' },

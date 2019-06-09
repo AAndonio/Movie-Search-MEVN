@@ -1,6 +1,6 @@
 <template>
   <div style="margin: 10px 20px; padding: 0">
-    <vue-slider v-model="selectedValues" :interval="interval" :min="min" :max="max" v-on:drag-end="aggiorna"></vue-slider>
+    <vue-slider v-model="selectedValues" :interval="interval" :adsorb="true"  :marks="marks" :min="min" :max="max" v-on:drag-end="aggiorna"></vue-slider>
     <v-layout row>
       <v-flex shrink style="width: 120px; margin-right: auto">
         <v-text-field v-model="selectedValues[0]" class="mt-0" hide-details single-line type="number" :min="0" :max="100"></v-text-field>
@@ -28,6 +28,7 @@ export default {
       interval: this.values.interval,
       minField: this.values.field1,
       maxField: this.values.field2,
+      marks: this.values.marks
     };
   },
   methods: {

@@ -60,18 +60,20 @@ export const Labels = {
     },
     budgetLabel: {
         min: 0,
-        max: 500000000,
-        interval: 20000,
+        max: 600000000,
+        interval: 20,
         field1: "min_budget",
-        field2: "max_budget"
+        field2: "max_budget",
+        marks: ['1k', '50k', '100k', '500k', '1Ml', '50Ml','100Ml', '400Ml', '800Ml']
 
     },
     grossLabel: {
         min: 0,
-        max: 800000000,
-        interval: 20000,
+        max: 800,
+        interval: 20,
         field1: "min_gross",
-        field2: "max_gross"
+        field2: "max_gross",
+        marks: ['1k', '50k', '100k', '500k', '1Ml', '50Ml','100Ml', '400Ml', '800Ml']
     },
     ratingLabel: {
         min: 0,

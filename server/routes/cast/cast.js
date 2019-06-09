@@ -6,57 +6,24 @@ const router = express.Router();
 
 router.get('/movieNumber', async (req, res) => {
 
-    /*
-    await Movie.
-    where('genres').
-    all('Action').
-    distinct('actors').
-    exec((err, actors) => {
-        if(err){
-            res.status(500).send(err);
-        }
-        if(actors) {
-            var attori = [];
-            actors.forEach((actor) => {
-                var oggettoAttore = {}
-                oggettoAttore.attore = actor;
-
-                var query = async (err, attori) => { await Movie.
-                    where('genres').
-                    all('Action').
-                    where('actors').in(actor).countDocuments().
-                    exec((err, count) => {
-                        oggettoAttore.apparizioni = count;
-                        attori.push(oggettoAttore);
-                    })};
-                query();
-            });
-            console.log(attori);
-
-            res.status(200).send(attori);
-        } 
-    });
-
     await Movie.aggregate([
-        {$match: {"filmazione": {$in:["Action" ,"$genres"]}}}
-    ]).exec((err, response) => {
+        {$project: {genres: 1, actors: 1}},
+        {$unwind : "$actors" },
+        {$unwind : "$genres" },
+        {$match: {genres: "Action"}},
+        {$group: {_id: "$actors", total : {$sum : 1}}},
+        {$match: {total: {$gt: 3}}}
+    ]).exec( (err, movies) =>{
         if(err){
             res.status(500).send(err);
         }
-        if(response) {
-            console.log(response);
-            res.status(200).send(response);
+        if(movies) {
+            console.log(movies);
+                res.status(200).send(movies);
+            if(movies === [])
+                res.status(200).send("Nessun film soddisfa i requisiti");
         }
-    });*/
-
-    await Movie.mapReduce(
-        function() {emit(this.actors, 1)},
-        function(key, values) {return Array.sum(values)},
-        {
-            query: {$in:["Action" ,"$genres"]},
-            out: {attori, apparizioni}
-        }
-    );
+    });
 
 });
 

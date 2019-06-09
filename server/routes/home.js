@@ -43,13 +43,13 @@ router.post('/', async (req,res) => {
         query.where('color').in(req.body.color);
 
     if(req.body.min_year)
-        query.where('title_year').gt(req.body.min_year).lt(req.body.max_year);
+        query.where('title_year').gte(req.body.min_year).lte(req.body.max_year);
 
-    if(req.body.min_duration)
-        query.where('duration').gt(req.body.min_duration).lt(req.body.max_duration);
+    if(req.body.max_duration)
+        query.where('duration').gte(req.body.min_duration).lte(req.body.max_duration);
 
     if(req.body.min_rating)
-        query.where('imdb_score').gt(req.body.min_rating).lt(req.body.max_rating);
+        query.where('imdb_score').gte(req.body.min_rating).lte(req.body.max_rating);
 
     if(req.body.content_rating)
         query.where('content_rating').in(req.body.content_rating);
@@ -67,20 +67,19 @@ router.post('/', async (req,res) => {
             query.where('actors').all(regex);
     }
     
-    if(req.body.director_name){
+    if(req.body.director_name)
         query.where('director_name').equals({ $regex: req.body.director_name, $options: 'i' });
+
+    if(req.body.max_budget){
+        query.where('budget').gte(req.body.min_budget).lte(req.body.max_budget);
     }
+    if(req.body.max_gross)
+        query.where('gross').gte(req.body.min_gross).lte(req.body.max_gross);
 
-    if(req.body.min_budget)
-        query.where('budget').gt(req.body.min_budget).lt(req.body.max_budget);
+    if(req.body.max_critic)
+        query.where('num_critic_for_reviews').gte(req.body.min_critic).lte(req.body.max_critic);
 
-    if(req.body.min_gross)
-        query.where('gross').gt(req.body.min_gross).lt(req.body.max_gross);
-
-    if(req.body.min_critic)
-        query.where('num_critic_for_reviews').gt(req.body.min_critic).lt(req.body.max_critic);
-
-    query.select('movie_title title_year director_name duration imdb_score movie_imdb_link').exec((err, movies) => {
+    query.select('movie_title title_year director_name duration imdb_score movie_imdb_link budget gross').exec((err, movies) => {
         if(err){
             res.status(500).send(err);
         }

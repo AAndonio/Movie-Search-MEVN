@@ -135,7 +135,7 @@
     </v-layout>
 
     <b-row align-h="end" style="padding: 40px 65px 0px 65px">
-      <b-col md="3" class="my-1" style="padding-top: 30px">
+      <b-col md="5" class="my-1" style="padding-top: 30px">
         <button align-h="end" @click.stop="drawer = !drawer">
           <img
             style=" background-color: Transparent;
@@ -159,12 +159,12 @@
           </b-input-group>
         </b-form-group>
       </b-col>
-      <b-col md="3" class="my-1" style="padding-top: 30px">
+      <b-col md="2" class="my-1" style="padding-top: 30px">
         <b-form-group label-cols-sm="3" label="Film per pagina" class="mb-0">
           <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
         </b-form-group>
       </b-col>
-      <b-col md="3" class="my-1" style="padding-top: 30px">
+      <b-col md="2" class="my-1" style="padding-top: 30px">
         <b-form-group label-cols-sm="3" label="Ordina" class="mb-0">
           <b-input-group>
             <b-form-select v-model="sortBy" :options="sortOptions">
@@ -340,6 +340,7 @@ export default {
       var response = await MovieService.getMoviesSelection(this.request);
       this.items = response.data;
       this.totalRows = this.items.length;
+      console.log(this.request);
     },
 
     info(item, index, button) {
@@ -369,6 +370,7 @@ export default {
       var minField = message.minField;
       var maxField = message.maxField;
       if (message.selectedMax == message.selectedMin) {
+        console.log("siamo qui ciao");
         delete this.request[minField];
         delete this.request[maxField];
       } else {
@@ -385,7 +387,7 @@ export default {
       }
 
       var arrayActors = Object.values(this.actors);
-      
+
       if (arrayActors.length == 0) {
         delete this.request["actors"];
       } else {

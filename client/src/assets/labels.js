@@ -63,8 +63,7 @@ export const Labels = {
         max: 600000000,
         interval: 20,
         field1: "min_budget",
-        field2: "max_budget",
-        marks: ['1k', '50k', '100k', '500k', '1Ml', '50Ml','100Ml', '400Ml', '800Ml']
+        field2: "max_budget"
 
     },
     grossLabel: {
@@ -72,8 +71,7 @@ export const Labels = {
         max: 800,
         interval: 20,
         field1: "min_gross",
-        field2: "max_gross",
-        marks: ['1k', '50k', '100k', '500k', '1Ml', '50Ml','100Ml', '400Ml', '800Ml']
+        field2: "max_gross"
     },
     ratingLabel: {
         min: 0,
@@ -108,5 +106,21 @@ export const Labels = {
         { value: '5', text: 'Più di 5 film' },
         { value: '6', text: 'Più di 6 film' },
         { value: '7', text: 'Più di 7 film' },
-    ]
+    ],
+    slider2Values: {
+        "0": 0,
+        "100k" : 100000,
+        "300k" : 300000,
+        "500k" : 500000,
+        "1Ml" : 1000000,
+        "5Ml" : 5000000,
+        "10Ml" : 10000000,
+        "25Ml" : 25000000,
+        "50Ml" : 50000000,
+        "100Ml" : 100000000,
+        "250Ml" : 250000000,
+        "500Ml" : 500000000
+    }
+
+    
 }

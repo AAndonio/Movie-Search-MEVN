@@ -7,7 +7,7 @@
       :max="max"
       :adsorb="true"
       :data="data"
-      :marks="marks"
+      :marks="true"
       v-on:drag-end="aggiorna"
       class="slider2"
     ></vue-slider>
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { Labels } from "../assets/labels";
+
 export default {
   props: {
     values: {
@@ -31,40 +33,42 @@ export default {
       minField: this.values.field1,
       maxField: this.values.field2,
       data: [
-        "100",
-        "500",
-        "1000",
-        "5000",
-        "1000000",
-        "25000000",
-        "50000000",
-        "100000000",
-        "250000000",
-        "500000000"
-      ],
-      marks: [
+        "0",
         "100k",
+        "300k",
         "500k",
-        "1ML",
-        "5ML",
-        "10ML",
-        "25ML",
-        "50ML",
-        "100ML",
-        "250ML",
-        "500ML"
-      ]
+        "1Ml",
+        "5Ml",
+        "10Ml",
+        "25Ml",
+        "50Ml",
+        "100Ml",
+        "250Ml",
+        "500Ml"
+      ],
+      realValues: Labels.slider2Values
     };
   },
   methods: {
     aggiorna() {
       var message = {
         minField: this.minField,
-        selectedMin: this.selectedValues[0],
+        selectedMin: this.getRealValue(this.selectedValues[0]),
         maxField: this.maxField,
-        selectedMax: this.selectedValues[1]
+        selectedMax: this.getRealValue(this.selectedValues[1])
       };
+              console.log(message.minField);
+        console.log(message.maxField);
+
+
       this.$emit("childToParent", message);
+    },
+
+    getRealValue(value){
+      if(value === "0"){
+        console.log("Mamma mia");
+      }
+      return this.realValues[value];
     }
   }
 };

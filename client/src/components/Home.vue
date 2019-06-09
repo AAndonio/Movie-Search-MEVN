@@ -204,6 +204,10 @@
       </b-col>
     </b-row>
 
+    <b-row md="12" style="padding: 40px 65px 0px 65px"> 
+        <p> Sono stati trovati <b>{{items.length}}</b> risultati </p>
+    </b-row>
+
     <b-container fluid style="padding: 50px">
       <!-- Main table element -->
       <b-table
@@ -292,10 +296,19 @@ export default {
           sortDirection: "desc"
         },
         { key: "title_year", label: "Anno", sortable: true },
-        { key: "director_name", label: "Regista", sortable: true },
+        { key: "director_name", label: "Regista"},
         { key: "duration", label: "Durata"},
-        { key: "imdb_score", label: "Voto"},
+        { key: "imdb_score", label: "Voto", filtrable: false},
         { key: "movie_imdb_link", label: "IMDB"}
+      ],
+      fieldsFiltrable: [
+        {
+          key: "movie_title",
+          label: "Titolo",
+          sortable: true,
+          sortDirection: "desc"
+        },
+        { key: "title_year", label: "Anno", sortable: true },
       ],
       totalRows: 1,
       currentPage: 1,
@@ -325,7 +338,7 @@ export default {
   computed: {
     sortOptions() {
       // Create an options list from our fields
-      return this.fields
+      return this.fieldsFiltrable
         .filter(f => f.sortable)
         .map(f => {
           return { text: f.label, value: f.key };

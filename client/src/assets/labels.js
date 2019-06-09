@@ -61,15 +61,15 @@ export const Labels = {
     budgetLabel: {
         min: 0,
         max: 500000000,
-        interval: 122155,
+        interval: 20000,
         field1: "min_budget",
         field2: "max_budget"
 
     },
     grossLabel: {
         min: 0,
-        max: 2000000000,
-        interval: 3,
+        max: 800000000,
+        interval: 20000,
         field1: "min_gross",
         field2: "max_gross"
     },

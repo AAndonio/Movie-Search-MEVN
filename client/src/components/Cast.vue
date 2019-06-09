@@ -1,34 +1,21 @@
 <template>
-<b-container fluid style="padding: 0 0;">
+  <b-container fluid style="padding: 0 0;">
+    
     <b-row align-h="end" style="padding: 40px 65px 0px 65px">
+      <b-col md="3" class="my-1" style="padding-top: 70px"> Cerca gli attori comparsi in più film di un determinato genere</b-col>
       <b-col md="3" class="my-1" style="padding-top: 30px">
-        <b-form-group label-cols-sm="3" label="Filtra" class="mb-0">
-          <b-input-group>
-            <b-form-input v-model="filter" placeholder="Clicca per cercare"></b-form-input>
-            <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''" style="margin: 0">Clear</b-button>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form-group>
+        <p>Selezionare numero di film</p>
+        <b-form-select
+          v-model="toptenTypeSelected"
+          :options="toptenTypeLabel"
+          v-on:change="getTopTen"
+        ></b-form-select>
       </b-col>
       <b-col md="3" class="my-1" style="padding-top: 30px">
-        <b-form-group label-cols-sm="3" label="Film per pagina" class="mb-0">
-          <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
-        </b-form-group>
+        <p>Selezionare il genere</p>
+        <b-form-select v-model="genreSelected" :options="genresLabel" v-on:change="getTopTen"></b-form-select>
       </b-col>
-      <b-col md="3" class="my-1" style="padding-top: 30px">
-        <b-form-group label-cols-sm="3" label="Ordina" class="mb-0">
-          <b-input-group>
-            <b-form-select v-model="sortBy" :options="sortOptions">
-              <option slot="first" :value="null">-- none --</option>
-            </b-form-select>
-            <b-form-select v-model="sortDesc" :disabled="!sortBy" slot="append">
-              <option :value="false">Asc</option>
-              <option :value="true">Desc</option>
-            </b-form-select>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
+      <b-col md="3" class="my-1" style="padding-top: 30px"></b-col>
     </b-row>
 
     <b-container fluid style="padding: 50px">
@@ -61,9 +48,8 @@
         </template>
       </b-table>
 
-     <b-row align-h="center">
-        <b-col  md="5" class="my-1">
-         
+      <b-row align-h="center">
+        <b-col md="5" class="my-1">
           <b-pagination
             v-model="currentPage"
             :total-rows="totalRows"
@@ -78,8 +64,6 @@
 </template>
 
 <script>
-export default {
-    
-}
+export default {};
 </script>
 

@@ -58,14 +58,18 @@ router.post('/', async (req,res) => {
         query.where('genres').all(req.body.genres);
     
     if(req.body.actors){
+
+        regex = req.body.actors.map(function (e) { return new RegExp(e, "i"); });
+
         if(req.body.actors==1)
-            query.where('actors').in(req.body.actors);
-        else
-            query.where('actors').all(req.body.actors);
+            query.where('actors').in(regex);
+        else 
+            query.where('actors').all(regex);
     }
     
-    if(req.body.director_name)
-        query.where('director_name').equals(req.body.director_name);
+    if(req.body.director_name){
+        query.where('director_name').equals({ $regex: req.body.director_name, $options: 'i' });
+    }
 
     if(req.body.min_budget)
         query.where('budget').gt(req.body.min_budget).lt(req.body.max_budget);
@@ -75,8 +79,6 @@ router.post('/', async (req,res) => {
 
     if(req.body.min_critic)
         query.where('num_critic_for_reviews').gt(req.body.min_critic).lt(req.body.max_critic);
-    
-
 
     query.select('movie_title title_year director_name duration imdb_score movie_imdb_link').exec((err, movies) => {
         if(err){

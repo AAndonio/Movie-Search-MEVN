@@ -61,11 +61,7 @@
               </v-list-tile>
             </template>
             <div style="display:block">
-              <Slider
-                name="Year"
-                :values="yearLabel"
-                v-on:childToParent="onSliderUpdating"
-              />
+              <Slider name="Year" :values="yearLabel" v-on:childToParent="onSliderUpdating"/>
             </div>
           </v-list-group>
           <v-list-group>
@@ -74,11 +70,7 @@
                 <v-list-tile-title class="sidebar-item">Durata</v-list-tile-title>
               </v-list-tile>
             </template>
-              <Slider
-                name="Duration"
-                :values="durationLabel"
-                v-on:childToParent="onSliderUpdating"
-              />
+            <Slider name="Duration" :values="durationLabel" v-on:childToParent="onSliderUpdating"/>
           </v-list-group>
           <v-list-group>
             <template v-slot:activator>
@@ -86,23 +78,15 @@
                 <v-list-tile-title class="sidebar-item">Budget</v-list-tile-title>
               </v-list-tile>
             </template>
-              <Slider
-                name="Budget"
-                :values="budgetLabel"
-                v-on:childToParent="onSliderUpdating"
-              />
+            <Slider2 name="Budget" :values="budgetLabel" v-on:childToParent="onSliderUpdating"/>
           </v-list-group>
-                    <v-list-group>
+          <v-list-group>
             <template v-slot:activator>
               <v-list-tile>
                 <v-list-tile-title class="sidebar-item">Incasso</v-list-tile-title>
               </v-list-tile>
             </template>
-              <Slider
-                name="Gross"
-                :values="grossLabel"
-                v-on:childToParent="onSliderUpdating"
-              />
+            <Slider2 name="Gross" :values="grossLabel" v-on:childToParent="onSliderUpdating"/>
           </v-list-group>
           <v-list-group>
             <template v-slot:activator>
@@ -110,23 +94,15 @@
                 <v-list-tile-title class="sidebar-item">IMDB Rating</v-list-tile-title>
               </v-list-tile>
             </template>
-              <Slider
-                name="Rating"
-                :values="ratingLabel"
-                v-on:childToParent="onSliderUpdating"
-              />
+            <Slider name="Rating" :values="ratingLabel" v-on:childToParent="onSliderUpdating"/>
           </v-list-group>
-                    <v-list-group>
+          <v-list-group>
             <template v-slot:activator>
               <v-list-tile>
                 <v-list-tile-title class="sidebar-item">Numero di recensioni dalla critica</v-list-tile-title>
               </v-list-tile>
             </template>
-              <Slider
-                name="Critics"
-                :values="criticLabel"
-                v-on:childToParent="onSliderUpdating"
-              />
+            <Slider name="Critics" :values="criticLabel" v-on:childToParent="onSliderUpdating"/>
           </v-list-group>
           <v-list-group>
             <template v-slot:activator>
@@ -194,8 +170,12 @@
             <b-form-select v-model="sortBy" :options="sortOptions">
               <option slot="first" :value="null">-- none --</option>
             </b-form-select>
-            <b-form-select v-model="sortDesc" :disabled="!sortBy" slot="append" 
-            style="background-color: #b45a5a !important; color: white;">
+            <b-form-select
+              v-model="sortDesc"
+              :disabled="!sortBy"
+              slot="append"
+              style="background-color: #b45a5a !important; color: white;"
+            >
               <option :value="false">Asc</option>
               <option :value="true">Desc</option>
             </b-form-select>
@@ -204,8 +184,11 @@
       </b-col>
     </b-row>
 
-    <b-row md="12" style="padding: 40px 65px 0px 65px"> 
-        <p> Sono stati trovati <b>{{items.length}}</b> risultati </p>
+    <b-row md="12" style="padding: 40px 65px 0px 65px">
+      <p>
+        Sono stati trovati
+        <b>{{items.length}}</b> risultati
+      </p>
     </b-row>
 
     <b-container fluid style="padding: 50px">
@@ -231,7 +214,9 @@
         <template slot="director_name" slot-scope="row">{{ row.value }}</template>
         <template slot="duration" slot-scope="row">{{ row.value }}</template>
         <template slot="imdb_score" slot-scope="row">{{ row.value }}</template>
-        <template slot="movie_imdb_link" slot-scope="row"><a :href="row.value">Link</a></template>
+        <template slot="movie_imdb_link" slot-scope="row">
+          <a :href="row.value">Link</a>
+        </template>
 
         <template slot="row-details" slot-scope="row">
           <b-card>
@@ -243,8 +228,7 @@
       </b-table>
 
       <b-row align-h="center">
-        <b-col  md="5" class="my-1">
-         
+        <b-col md="5" class="my-1">
           <b-pagination
             v-model="currentPage"
             :total-rows="totalRows"
@@ -262,6 +246,7 @@
 import MovieService from "../services/MovieService";
 import Toggle from "./Toggle";
 import Slider from "./Slider";
+import Slider2 from "./Slider2";
 import InputText from "./InputText";
 import { Labels } from "../assets/labels";
 
@@ -270,6 +255,7 @@ export default {
   components: {
     Toggle,
     Slider,
+    Slider2,
     InputText
   },
   props: {
@@ -296,10 +282,10 @@ export default {
           sortDirection: "desc"
         },
         { key: "title_year", label: "Anno", sortable: true },
-        { key: "director_name", label: "Regista"},
-        { key: "duration", label: "Durata"},
-        { key: "imdb_score", label: "Voto", filtrable: false},
-        { key: "movie_imdb_link", label: "IMDB"}
+        { key: "director_name", label: "Regista" },
+        { key: "duration", label: "Durata" },
+        { key: "imdb_score", label: "Voto", filtrable: false },
+        { key: "movie_imdb_link", label: "IMDB" }
       ],
       fieldsFiltrable: [
         {
@@ -308,7 +294,7 @@ export default {
           sortable: true,
           sortDirection: "desc"
         },
-        { key: "title_year", label: "Anno", sortable: true },
+        { key: "title_year", label: "Anno", sortable: true }
       ],
       totalRows: 1,
       currentPage: 1,
@@ -332,7 +318,7 @@ export default {
       ratingLabel: Labels.ratingLabel,
       durationLabel: Labels.durationLabel,
       criticLabel: Labels.criticLabel,
-      actors: {},
+      actors: {}
     };
   },
   computed: {
@@ -378,7 +364,7 @@ export default {
         this.request[field] = value.selected;
       }
       this.getMovies();
-    },    
+    },
     onSliderUpdating(message) {
       var minField = message.minField;
       var maxField = message.maxField;
@@ -390,13 +376,12 @@ export default {
         this.request[maxField] = message.selectedMax;
       }
       this.getMovies();
-    }
-    ,    
+    },
     onActorUpdating(message) {
-      if(message.newValue === ""){
+      if (message.newValue === "") {
         delete this.actors[message.id];
       } else {
-        this.actors[message.id] = message.newValue; 
+        this.actors[message.id] = message.newValue;
       }
 
       var arrayActors = Object.values(this.actors);
@@ -412,10 +397,10 @@ export default {
     },
 
     onDirectorUpdating(message) {
-      if(message.newValue === ""){
+      if (message.newValue === "") {
         delete this.request["director_name"];
       } else {
-        this.request["director_name"] = message.newValue; 
+        this.request["director_name"] = message.newValue;
       }
       this.getMovies();
     }
@@ -476,5 +461,9 @@ img.resize {
 .v-list__tile__title {
   color: darkred !important;
   font-weight: bold !important;
+}
+.v-navigation-drawer--temporary:not(.v-navigation-drawer--close),
+.v-navigation-drawer--is-mobile:not(.v-navigation-drawer--close) {
+  width: 400px !important;
 }
 </style>

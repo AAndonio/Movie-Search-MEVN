@@ -135,7 +135,7 @@
     </v-layout>
 
     <b-row align-h="end" style="padding: 40px 65px 0px 65px">
-      <b-col md="5" class="my-1" style="padding-top: 30px">
+      <b-col md="1" class="my-1" style="padding-top: 30px">
         <button align-h="end" @click.stop="drawer = !drawer">
           <img
             style=" background-color: Transparent;
@@ -149,7 +149,7 @@
           >
         </button>
       </b-col>
-      <b-col md="3" class="my-1" style="padding-top: 30px">
+      <b-col md="4" class="my-1" style="padding-top: 30px">
         <b-form-group label-cols-sm="3" label="Filtra" class="mb-0">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Clicca per cercare"></b-form-input>
@@ -159,12 +159,12 @@
           </b-input-group>
         </b-form-group>
       </b-col>
-      <b-col md="2" class="my-1" style="padding-top: 30px">
-        <b-form-group label-cols-sm="3" label="Film per pagina" class="mb-0">
+      <b-col md="3" class="my-1" style="padding-top: 30px">
+        <b-form-group label-cols-sm="3" label="Per pagina" class="mb-0">
           <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
         </b-form-group>
       </b-col>
-      <b-col md="2" class="my-1" style="padding-top: 30px">
+      <b-col md="4" class="my-1" style="padding-top: 30px">
         <b-form-group label-cols-sm="3" label="Ordina" class="mb-0">
           <b-input-group>
             <b-form-select v-model="sortBy" :options="sortOptions">
@@ -176,8 +176,8 @@
               slot="append"
               style="background-color: #b45a5a !important; color: white;"
             >
-              <option :value="false">Asc</option>
-              <option :value="true">Desc</option>
+              <option :value="false">ASC</option>
+              <option :value="true">DESC</option>
             </b-form-select>
           </b-input-group>
         </b-form-group>
@@ -368,7 +368,7 @@ export default {
     onSliderUpdating(message) {
       var minField = message.minField;
       var maxField = message.maxField;
-      if (message.selectedMax == message.selectedMin) {
+      if (message.selectedMax == message.selectedMin && message.selectedMax == 0) {
         delete this.request[minField];
         delete this.request[maxField];
       } else {

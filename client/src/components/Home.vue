@@ -61,7 +61,7 @@
               </v-list-tile>
             </template>
             <div style="display:block">
-              <Slider name="Year" :values="yearLabel" v-on:childToParent="onSliderUpdating"/>
+              <Slider name="Year" :values="yearLabel" v-on:childToParent="onYearSliderUpdating"/>
             </div>
           </v-list-group>
           <v-list-group>
@@ -377,6 +377,19 @@ export default {
       }
       this.getMovies();
     },
+        onYearSliderUpdating(message) {
+      var minField = message.minField;
+      var maxField = message.maxField;
+      if (message.selectedMax == message.selectedMin && message.selectedMax == this.yearLabel.min) {
+        delete this.request[minField];
+        delete this.request[maxField];
+      } else {
+        this.request[minField] = message.selectedMin;
+        this.request[maxField] = message.selectedMax;
+      }
+      this.getMovies();
+    },
+
     onActorUpdating(message) {
       if (message.newValue === "") {
         delete this.actors[message.id];

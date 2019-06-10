@@ -48,7 +48,7 @@ router.post('/', async (req,res) => {
     if(req.body.max_duration)
         query.where('duration').gte(req.body.min_duration).lte(req.body.max_duration);
 
-    if(req.body.min_rating)
+    if(req.body.max_rating)
         query.where('imdb_score').gte(req.body.min_rating).lte(req.body.max_rating);
 
     if(req.body.content_rating)

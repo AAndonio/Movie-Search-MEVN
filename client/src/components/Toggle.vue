@@ -5,7 +5,7 @@
         <b-form-checkbox-group
           v-model="selected"
           :options="options"
-          
+          switches
           stacked
           v-on:input="aggiorna"
         ></b-form-checkbox-group>

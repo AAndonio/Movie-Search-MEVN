@@ -3,7 +3,7 @@
     
     <b-row align-h="end" style="padding: 40px 65px 0px 65px">
       <b-col md="12" class="my-1" style="padding-top: 30px">
-        <p>Visualizza il numero di apparizioni degli attori che hanno recitato in film di questo genere:</p>
+        <p>Visualizza il numero di comparse degli attori che hanno recitato in film di questo genere:</p>
       </b-col>
     </b-row>
         <b-row align-h="end" style="padding: 0px 65px 0px 65px">
@@ -69,7 +69,7 @@ export default {
         items: [],
         fields: [
         { key: "_id",label: "Attore"},
-        { key: "total", label: "Apparizioni"}
+        { key: "total", label: "Comparse"}
       ],
         numberOfMovies: null,
         genreSelected: null,

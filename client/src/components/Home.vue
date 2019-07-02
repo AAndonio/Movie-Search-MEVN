@@ -134,111 +134,113 @@
       </v-navigation-drawer>
     </v-layout>
 
-    <b-row align-h="end" style="padding: 40px 65px 0px 65px">
-      <b-col md="1" class="my-1" style="padding-top: 30px">
-        <button align-h="end" @click.stop="drawer = !drawer">
-          <img
-            style=" background-color: Transparent;
+    <div class="divTables">
+      <b-row align-h="end" style="padding: 40px 65px 0px 65px">
+        <b-col md="1" class="my-1" style="padding-top: 30px">
+          <button align-h="end" @click.stop="drawer = !drawer">
+            <img
+              style=" background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
     overflow: hidden;
     outline:none;width: 50px;
         height: 50px;"
-            src="../assets/filter.png"
-          >
-        </button>
-      </b-col>
-      <b-col md="4" class="my-1" style="padding-top: 30px">
-        <b-form-group label-cols-sm="3" label="Filtra" class="mb-0">
-          <b-input-group>
-            <b-form-input v-model="filter" placeholder="Clicca per cercare"></b-form-input>
-            <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''" style="margin: 0">Clear</b-button>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-      <b-col md="3" class="my-1" style="padding-top: 30px">
-        <b-form-group label-cols-sm="3" label="Per pagina" class="mb-0">
-          <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
-        </b-form-group>
-      </b-col>
-      <b-col md="4" class="my-1" style="padding-top: 30px">
-        <b-form-group label-cols-sm="3" label="Ordina" class="mb-0">
-          <b-input-group>
-            <b-form-select v-model="sortBy" :options="sortOptions">
-              <option slot="first" :value="null">-- none --</option>
-            </b-form-select>
-            <b-form-select
-              v-model="sortDesc"
-              :disabled="!sortBy"
-              slot="append"
-              style="background-color: #b45a5a !important; color: white;"
+              src="../assets/filter.png"
             >
-              <option :value="false">ASC</option>
-              <option :value="true">DESC</option>
-            </b-form-select>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-    </b-row>
-
-    <b-row md="12" style="padding: 40px 65px 0px 65px">
-      <p>
-        Sono stati trovati
-        <b>{{items.length}}</b> risultati
-      </p>
-    </b-row>
-
-    <b-container fluid style="padding: 50px">
-      <!-- Main table element -->
-      <b-table
-        striped
-        show-empty
-        stacked="md"
-        hover
-        head-variant="dark"
-        :items="items"
-        :fields="fields"
-        :current-page="currentPage"
-        :per-page="perPage"
-        :filter="filter"
-        :sort-by.sync="sortBy"
-        :sort-desc.sync="sortDesc"
-        :sort-direction="sortDirection"
-        @filtered="onFiltered"
-      >
-        <template slot="movie_title" slot-scope="row">{{ row.value }}</template>
-        <template slot="title_year" slot-scope="row">{{ row.value }}</template>
-        <template slot="director_name" slot-scope="row">{{ row.value }}</template>
-        <template slot="duration" slot-scope="row">{{ row.value }}</template>
-        <template slot="imdb_score" slot-scope="row">{{ row.value }}</template>
-        <template slot="movie_imdb_link" slot-scope="row">
-          <a :href="row.value">Link</a>
-        </template>
-
-        <template slot="row-details" slot-scope="row">
-          <b-card>
-            <ul>
-              <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
-            </ul>
-          </b-card>
-        </template>
-      </b-table>
-
-      <b-row align-h="center">
-        <b-col md="5" class="my-1">
-          <b-pagination
-            v-model="currentPage"
-            :total-rows="totalRows"
-            :per-page="perPage"
-            align="fill"
-            class="my-0"
-          ></b-pagination>
+          </button>
+        </b-col>
+        <b-col md="4" class="my-1" style="padding-top: 30px">
+          <b-form-group label-cols-sm="3" label="Filtra" class="mb-0">
+            <b-input-group>
+              <b-form-input v-model="filter" placeholder="Clicca per cercare"></b-form-input>
+              <b-input-group-append>
+                <b-button :disabled="!filter" @click="filter = ''" style="margin: 0">Clear</b-button>
+              </b-input-group-append>
+            </b-input-group>
+          </b-form-group>
+        </b-col>
+        <b-col md="3" class="my-1" style="padding-top: 30px">
+          <b-form-group label-cols-sm="3" label="Per pagina" class="mb-0">
+            <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
+          </b-form-group>
+        </b-col>
+        <b-col md="4" class="my-1" style="padding-top: 30px">
+          <b-form-group label-cols-sm="3" label="Ordina" class="mb-0">
+            <b-input-group>
+              <b-form-select v-model="sortBy" :options="sortOptions">
+                <option slot="first" :value="null">-- none --</option>
+              </b-form-select>
+              <b-form-select
+                v-model="sortDesc"
+                :disabled="!sortBy"
+                slot="append"
+                style="background-color: #b45a5a !important; color: white;"
+              >
+                <option :value="false">ASC</option>
+                <option :value="true">DESC</option>
+              </b-form-select>
+            </b-input-group>
+          </b-form-group>
         </b-col>
       </b-row>
-    </b-container>
+
+      <b-row md="12" style="padding: 40px 65px 0px 65px">
+        <p>
+          Sono stati trovati
+          <b>{{items.length}}</b> risultati
+        </p>
+      </b-row>
+
+      <b-container fluid style="padding: 50px">
+        <!-- Main table element -->
+        <b-table
+          striped
+          show-empty
+          stacked="md"
+          hover
+          head-variant="dark"
+          :items="items"
+          :fields="fields"
+          :current-page="currentPage"
+          :per-page="perPage"
+          :filter="filter"
+          :sort-by.sync="sortBy"
+          :sort-desc.sync="sortDesc"
+          :sort-direction="sortDirection"
+          @filtered="onFiltered"
+        >
+          <template slot="movie_title" slot-scope="row">{{ row.value }}</template>
+          <template slot="title_year" slot-scope="row">{{ row.value }}</template>
+          <template slot="director_name" slot-scope="row">{{ row.value }}</template>
+          <template slot="duration" slot-scope="row">{{ row.value }}</template>
+          <template slot="imdb_score" slot-scope="row">{{ row.value }}</template>
+          <template slot="movie_imdb_link" slot-scope="row">
+            <a :href="row.value">Link</a>
+          </template>
+
+          <template slot="row-details" slot-scope="row">
+            <b-card>
+              <ul>
+                <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
+              </ul>
+            </b-card>
+          </template>
+        </b-table>
+
+        <b-row align-h="center">
+          <b-col md="5" class="my-1">
+            <b-pagination
+              v-model="currentPage"
+              :total-rows="totalRows"
+              :per-page="perPage"
+              align="fill"
+              class="my-0"
+            ></b-pagination>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
   </b-container>
 </template>
 
@@ -368,7 +370,10 @@ export default {
     onSliderUpdating(message) {
       var minField = message.minField;
       var maxField = message.maxField;
-      if (message.selectedMax == message.selectedMin && message.selectedMax == 0) {
+      if (
+        message.selectedMax == message.selectedMin &&
+        message.selectedMax == 0
+      ) {
         delete this.request[minField];
         delete this.request[maxField];
       } else {
@@ -377,10 +382,13 @@ export default {
       }
       this.getMovies();
     },
-        onYearSliderUpdating(message) {
+    onYearSliderUpdating(message) {
       var minField = message.minField;
       var maxField = message.maxField;
-      if (message.selectedMax == message.selectedMin && message.selectedMax == this.yearLabel.min) {
+      if (
+        message.selectedMax == message.selectedMin &&
+        message.selectedMax == this.yearLabel.min
+      ) {
         delete this.request[minField];
         delete this.request[maxField];
       } else {
@@ -458,8 +466,8 @@ img.resize {
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(255, 215, 0, 0.1) !important;
 }
-.table-striped tbody tr:nth-of-type(odd):focus,
-.table-striped tbody tr:nth-of-type(even):focus {
+.table-striped tbody tr:nth-of-type(odd):hover,
+.table-striped tbody tr:nth-of-type(even):hover {
   background-color: rgba(255, 215, 0, 0.25) !important;
 }
 .form-control {
@@ -476,5 +484,13 @@ img.resize {
 .v-navigation-drawer--temporary:not(.v-navigation-drawer--close),
 .v-navigation-drawer--is-mobile:not(.v-navigation-drawer--close) {
   width: 400px !important;
+}
+
+.v-navigation-drawer--absolute {
+  position: fixed !important;
+}
+
+.v-overlay--absolute {
+  position: fixed !important;
 }
 </style>

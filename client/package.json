@@ -16,7 +16,7 @@
     "material-design-icons-iconfont": "^5.0.1",
     "mdbootstrap": "^4.8.2",
     "mdbvue": "^5.4.1",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "pug-loader": "^2.3.0",
     "pug-plain-loader": "^1.0.0",
     "tar": "^4.4.10",

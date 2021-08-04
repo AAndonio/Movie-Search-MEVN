@@ -19,7 +19,7 @@
     "pug": "^2.0.3",
     "pug-loader": "^2.3.0",
     "pug-plain-loader": "^1.0.0",
-    "tar": "^4.4.10",
+    "tar": "^4.4.15",
     "vue": "^2.6.10",
     "vue-bootstrap-slider": "^2.1.8",
     "vue-burger-menu": "^2.0.1",
